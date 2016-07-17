@@ -89,10 +89,10 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ## 4. Ejecutar la instrucción ls sobre Hadoop para indicar el tamaño del fichero
 ```bash
-    hdfs dfs -du /ejerciciosPig/discografia.txt
+    hdfs dfs -ls /ejerciciosPig/discografia.txt
 ```
 
-![du discografia.txt](images/DuDiscografia.png)
+![ls discografia.txt](images/LsDiscografia.png)
 
 ## 5. Arrancar pig en modo distribuido (si se desea eliminar trazas de log) y ejecutar el siguiente comando: cat hdfs://localhost:9000 ejerciciosPig/discografia.txt para confirmar que los primeros puntos han funcionado correctamente y el fichero está subido a HDFS
 
