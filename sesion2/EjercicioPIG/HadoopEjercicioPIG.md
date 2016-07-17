@@ -97,7 +97,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ## 5. Arrancar pig en modo distribuido (si se desea eliminar trazas de log) y ejecutar el siguiente comando: cat hdfs://localhost:9000 ejerciciosPig/discografia.txt para confirmar que los primeros puntos han funcionado correctamente y el fichero está subido a HDFS
 
-> Nota: La configuración del niverl de error del log debe estar configurada en el fichero:
+> Nota: La configuración del nivel de error del log debe estar configurada en el fichero:
 >
 >       /home/bigdata/pig/conf/nolog.conf
 >
@@ -163,10 +163,10 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
     - Obtener una variable 'a' con todos los años de las canciones de la variable 'discos'.
 
 - b = distinct a;
-    - Obtener en una variable 'b' los años distintos de la variable 'a'.
+    - Obtener en una variable 'b' los valores distintos (años) de la variable 'a'.
 
 - dump b;
-    - Mostrar el contenido de la variable 'b' (los años distintos de las canciones de Pink Floid de la lista).
+    - Mostrar el contenido de la variable 'b' (los años distintos).
 
 ![Foreach distinct](images/ForeachDistinct.png)
 
