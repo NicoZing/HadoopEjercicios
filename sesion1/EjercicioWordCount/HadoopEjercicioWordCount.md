@@ -32,10 +32,16 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
 
 ## SOLUCIÓN:
 
-### 1) Iniciamos el sistema
+### 1) Iniciamos el sistema si no está iniciado
+
+> NOTA: deben existir las variables de entorno:
+>
+>       $HADOOP_HOME=/home/bigdata/hadoop
+>
+>       $PIG_HOME=/home/bigdata/pig
 
 ```bash
-    # Accede al directorio de hadoop (no es necesario, pero se incluye por claridad)
+    # Accede al directorio de hadoop
     cd $HADOOP_HOME
 
     # Arranca los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
@@ -43,9 +49,11 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     ./sbin/start-yarn.sh
     ./sbin/mr-jobhistory-daemon.sh start historyserver
 
-    # Comprueba que los demonios están arrancados
+    # Comprueba que los demonios estén arrancados
     jps
 ```
+
+![Demonios Hadoop](images/DemoniosHadoop.png)
 
 ### 2) Creamos en local una carpeta para el proyecto y los ficheros de texto de las canciones:
 
@@ -61,13 +69,13 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     gedit PINK_FLOYD_Pigs.txt # ... copiar, pegar, grabar y salir del editor
 
     # Lista y comprueba los ficheros creados
-    ls -lai /home/bigdata/ejercicios/EjercicioWorkCount/
+    ls -lai 
     head DAVE_MATTHEWS_BAND_Pig.txt
     head NINE_INCH_NAILS_LYRICS_March_Of_The_Pigs.txt
     head PINK_FLOYD_Pigs.txt
 ```
 
-![HadoopWordCount-ListaFicherosDatos.png](images/HadoopWordCount-ListaFicherosDatos.png)
+![HadoopWordCount-ListaFicherosDatos](images/HadoopWordCount-ListaFicherosDatos.png)
 
 ### 3) Creamos en HDFS una carpeta para el proyecto y subimos los ficheros de las canciones:
 
@@ -80,6 +88,8 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     # Comprueba el directorio y los ficheros
     hdfs dfs -ls -R /ejercicioWordCount
 ```
+
+![HadoopWordCount-FicherosGrupos](images/HadoopWordCount-FicherosGrupos.png)
 
 ### 4. Ejecutamos el programa word count y resolvemos las preguntas del formulario.
 
@@ -94,7 +104,7 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     hdfs dfs -cat /ejercicioWordCount_out/* > out.txt
 ```
 
-##### 4.A) Acceder al jobhistory e indicar los valores de "Status" y "Map Total" del job con el nombre "word count"
+#### 4.A) Acceder al jobhistory e indicar los valores de "Status" y "Map Total" del job con el nombre "word count"
 
 - Abrimos un navegador web y accedemos a la interfaz web de Map Reduce JobHistory:
     - Url: http://localhost:19888/jobhistory
@@ -103,15 +113,15 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     - State: SUCCEEDED
     - Maps Total: 3
 
-![HadoopWordCount-JobHistory.png](images/HadoopWordCount-JobHistory.png)
+![HadoopWordCount-JobHistory](images/HadoopWordCount-JobHistory.png)
 
-##### 4.B) Palabra que se repite más veces:
+#### 4.B) Palabra que se repite más veces:
 
 - Resultado:
 
         - the:      33
 
-##### 4.C) Palabra que se repite 6 veces:
+#### 4.C) Palabra que se repite 6 veces:
 
 ```bash
     grep 6 out.txt
@@ -126,7 +136,7 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
         - our:      6
         - we:       6
 
-##### 4.D) Cuántas veces aparece la palabra eyes:
+#### 4.D) Cuántas veces aparece la palabra eyes:
 
 ```bash
     grep eyes out.txt

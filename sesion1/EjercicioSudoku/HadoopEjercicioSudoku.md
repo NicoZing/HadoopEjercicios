@@ -56,6 +56,9 @@ Indicar todos los resultados del sudoku de ejemplo
     cat sudoku.txt
 ```
 
+![SudokuDatos](images/SudokuDatos.png)
+
+
 ### 2) Ejecutamos el programa sudoku y mostramos los resultados.
 
 ```bash
@@ -79,3 +82,9 @@ Indicar todos los resultados del sudoku de ejemplo
 
     Found 1 solutions
 ```
+
+![SudokuResultado](images/SudokuResultado.png)
+
+
+***
+

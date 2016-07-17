@@ -11,15 +11,15 @@
 Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el valor devuelto.
 
 - Programa: pi
-- Nº de mapeos:  2
-- Nº de muestras por mapeo: 4
+    - Nº de mapeos:  2
+    - Nº de muestras por mapeo: 4
 
 
 Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el valor devuelto.
 
 - Programa: pi
-- Nº de mapeos:  5
-- Nº de muestras por mapeo: 10
+    - Nº de mapeos:  5
+    - Nº de muestras por mapeo: 10
 
 ***
 
@@ -27,10 +27,9 @@ Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el
 
 #### 1. Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el valor devuelto.
 
-- Programa: pi.
-
-    ‐ No de mapeos: 2
-    ‐ No de muestras por mapeo: 4
+- Programa: pi
+    - Nº de mapeos:  2
+    - Nº de muestras por mapeo: 4
 
 - Ejecutar:
 ```bash
@@ -41,13 +40,14 @@ Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el
     Job Finished in 137.768 seconds
     Estimated value of Pi is 3.50000000000000000000
 
+![PI_2_4_1](images/PI_2_4_1.png)
+![PI_2_4_2](images/PI_2_4_2.png)
 
 #### 2. Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el valor devuelto.
 
-- Programa: pi.
-
-    ‐ No de mapeos: 5
-    ‐ No de muestras por mapeo: 10
+- Programa: pi
+    - Nº de mapeos:  5
+    - Nº de muestras por mapeo: 10
 
 - Ejecutar:
 ```bash
@@ -57,6 +57,10 @@ Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el
 
     Job Finished in 187.558 seconds
     Estimated value of Pi is 3.28000000000000000000
+
+![PI_5_10_1](images/PI_5_10_1.png)
+![PI_5_10_2](images/PI_5_10_2.png)
+
 
 
 ***

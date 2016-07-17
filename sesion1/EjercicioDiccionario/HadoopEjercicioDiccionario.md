@@ -51,7 +51,26 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 
 ### 1) Iniciamos el sistema si no está iniciado
 
-        Proceder como en el ejercicio de word count.
+> NOTA: deben existir las variables de entorno:
+>
+>       $HADOOP_HOME=/home/bigdata/hadoop
+>
+>       $PIG_HOME=/home/bigdata/pig
+
+```bash
+    # Accede al directorio de hadoop
+    cd $HADOOP_HOME
+
+    # Arranca los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
+    ./sbin/start-dfs.sh
+    ./sbin/start-yarn.sh
+    ./sbin/mr-jobhistory-daemon.sh start historyserver
+
+    # Comprueba que los demonios estén arrancados
+    jps
+```
+
+![Demonios Hadoop](images/DemoniosHadoop.png)
 
 ### 2) Creamos en local una carpeta para el proyecto, descargamos los ficheros de diccionarios y los combinamos en un único fichero:
 
@@ -59,7 +78,6 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
     # Crea la carpeta del proyecto en local y se posiciona en ella:
     mkdir /home/bigdata/ejercicios/EjercicioDiccionario/
     cd /home/bigdata/ejercicios/EjercicioDiccionario/
-    pwd
 
     # Descarga los diccionarios
     wget http://www.ilovelanguages.com/IDP/files/Spanish.txt
@@ -87,11 +105,16 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
     hdfs dfs -ls /user/bigdata/mapreduce
 ```
 
+![LsDiccionario](images/LsDiccionario.png)
+
+
 ### 4) Creamos en local el fichero Java Dictionary.java:
 
 >
 > NOTA: No he modificado el fichero Dictionary.java, sino que lo he dejado tal y como venía en los materiales del class room:
+>
 > - FileInputFormat.addInputPath(job, new Path(args[0]));
+>
 > - FileOutputFormat.setOutputPath(job, new Path(args[1]));
 >
 
@@ -113,6 +136,8 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
     ls -lrt dictionary.jar
 ```
 
+![LsJar](images/LsJar.png)
+
 ### 6) Ejecutamos el programa:
 
 > NOTA: Como he dejado el fichero Dictionary.java original, sí tengo que indicar los parámetros.
@@ -120,6 +145,9 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 ```bash
     hadoop jar dictionary.jar Dictionary /user/bigdata/mapreduce/diccionario.txt output
 ```
+
+![Output_1](images/Output_1.png)
+![Output_2](images/Output_2.png)
 
 ### 7) Obtenemos la traducción de pig:
 
@@ -140,3 +168,4 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 
 
 ***
+

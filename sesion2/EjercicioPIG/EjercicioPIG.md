@@ -78,7 +78,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 ## 3. Subir el fichero a HDFS dentro de la carpeta /ejerciciosPig/discografia.txt
 
 ```bash
-    # Copia los ficheros de texto al HDFS
+    # Copia el fichero de texto al HDFS
     hdfs dfs -put discos.txt /ejerciciosPig/discografia.txt
 
     # Comprueba el fichero subido
@@ -129,23 +129,19 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ## 9. Explica con tus propias palabras lo que se desea obtener con los siguientes comandos e indica el resultado obtenido.
 
-- Obtener una variable 'a' con todos los años de las canciones de la variable 'discos'.
-```bash
-    a = foreach discos generate anio;
-```
+- a = foreach discos generate anio;
+    - Obtener una variable 'a' con todos los años de las canciones de la variable 'discos'.
 
-- Obtener en una variable 'b' los años distintos de la variable 'a'.
-```bash
-    b = distinct a;
-```
+- b = distinct a;
+    - Obtener en una variable 'b' los años distintos de la variable 'a'.
 
-- Mostrar el contenido de la variable 'b' (los años distintos de las canciones de Pink Floid de la lista).
-```bash
-    dump b;
-```
+- dump b;
+    - Mostrar el contenido de la variable 'b' (los años distintos de las canciones de Pink Floid de la lista).
 
 ![Foreach distinct](images/ForeachDistinct.png)
 
 ## 10. (opcional) Empleando UDFs extrae información útil de la discografía.
 
+
+***
 
