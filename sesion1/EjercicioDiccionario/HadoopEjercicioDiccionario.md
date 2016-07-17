@@ -171,3 +171,21 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 
 ***
 
+## 99. Detener los demonios
+```bash
+    # Accede al directorio de hadoop
+    cd $HADOOP_HOME
+
+    # Para los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
+    ./sbin/stop-dfs.sh
+    ./sbin/stop-yarn.sh
+    ./sbin/mr-jobhistory-daemon.sh stop historyserver
+
+    # Comprueba que los demonios no estén arrancados
+    jps
+```
+
+
+
+***
+

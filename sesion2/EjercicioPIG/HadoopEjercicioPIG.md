@@ -88,6 +88,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 ![cat discografia.txt](images/CatDiscografia.png)
 
 ## 4. Ejecutar la instrucción ls sobre Hadoop para indicar el tamaño del fichero
+
 ```bash
     hdfs dfs -ls /ejerciciosPig/discografia.txt
 ```
@@ -112,6 +113,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 ![Pig Mapreduce](images/PigMapreduce.png)
 
 ## 6. Cargar el fichero de hdfs en una variable llamada discos
+
 ```bash
     discos = LOAD 'hdfs://localhost:9000/ejerciciosPig/discografia.txt' using PigStorage (',') AS (annio: int, nombredisco: chararray, rankingEEUU: int, rankingUK: int);
     dump discos;
@@ -120,12 +122,40 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 ![Var discos](images/VarDiscos.png)
 
 ## 7. Calcular los discos que estuvieron a la vez en el top 5 de EEUU y de UK (indicar también el resultado)
+
 ```bash
+    top5 = filter discos by rankingEEUU <= 5 and rankingUK <= 5;
+    dump top5;
 ```
 
+![Top 5](images/Top5.png)
+
 ## 8. Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (indicar también el resultado)  empleando los comandos de LATIN PIG
+
 ```bash
+    # Forma 1
+    eu = foreach (group discos all) generate MAX(discos.rankingEEUU) as maxEEUU, MIN(discos.rankingEEUU) as minEEUU;
+    uk = foreach (group discos all) generate MAX(discos.rankingUK) as maxUK, MIN(discos.rankingUK) as minUK;
+    dump eu;
+    dump uk;
 ```
+
+![Rankings1](images/Rankings1.png)
+
+```bash
+    # Otra forma...
+    minmax = foreach (group discos all) generate MAX(discos.rankingEEUU) as maxEEUU, MIN(discos.rankingEEUU) as minEEUU, MAX(discos.rankingUK) as maxUK, MIN(discos.rankingUK) as minUK;
+    dump minmax;
+
+```
+
+![Rankings2](images/Rankings2.png)
+
+    - Max(rankingEEUU) = 999
+    - Min(rankingEEUU) = 1
+    - Max(rankingUK) = 9
+    - Min(rankingUK) = 1
+
 
 ## 9. Explica con tus propias palabras lo que se desea obtener con los siguientes comandos e indica el resultado obtenido.
 
@@ -141,6 +171,24 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 ![Foreach distinct](images/ForeachDistinct.png)
 
 ## 10. (opcional) Empleando UDFs extrae información útil de la discografía.
+
+
+***
+
+## 99. Detener los demonios
+```bash
+    # Accede al directorio de hadoop
+    cd $HADOOP_HOME
+
+    # Para los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
+    ./sbin/stop-dfs.sh
+    ./sbin/stop-yarn.sh
+    ./sbin/mr-jobhistory-daemon.sh stop historyserver
+
+    # Comprueba que los demonios no estén arrancados
+    jps
+```
+
 
 
 ***
