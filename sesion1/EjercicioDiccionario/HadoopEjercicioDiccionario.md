@@ -119,8 +119,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 >
 
 ```bash
-    gedit Dictionary.java
-    # ... se añade el código fuente Java ...
+    gedit Dictionary.java # ... se añade el código fuente Java ...
 ```
 - [Dictionary.java](src/Dictionary.java)
 
@@ -165,6 +164,9 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 - Resultado:
 
     pig	|cochon[Noun]|Schwein (n)|el chancho[Noun]|el puerco
+
+![Traduccion](images/Traduccion.png)
+
 
 
 ***

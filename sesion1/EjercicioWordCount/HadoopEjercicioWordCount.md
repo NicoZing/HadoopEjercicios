@@ -45,7 +45,7 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     cd $HADOOP_HOME
 
     # Arranca los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
-    ./sbin/start-dfs.sh
+    
     ./sbin/start-yarn.sh
     ./sbin/mr-jobhistory-daemon.sh start historyserver
 
