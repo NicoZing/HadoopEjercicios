@@ -43,6 +43,7 @@ Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el
 ![PI_2_4_1](images/PI_2_4_1.png)
 ![PI_2_4_2](images/PI_2_4_2.png)
 
+
 #### 2. Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el valor devuelto.
 
 - Programa: pi
