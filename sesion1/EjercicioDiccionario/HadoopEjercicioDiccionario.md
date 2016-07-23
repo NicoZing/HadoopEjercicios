@@ -72,40 +72,37 @@ jps
 
 ![Demonios Hadoop](images/DemoniosHadoop.png)
 
-
-![Demonios Hadoop](images/DemoniosHadoop.png)
-
 ### 2. Creamos en local una carpeta para el proyecto, descargamos los ficheros de diccionarios y los combinamos en un único fichero:
 
 ```bash
-    # Crea la carpeta del proyecto en local y se posiciona en ella:
-    mkdir /home/bigdata/ejercicios/EjercicioDiccionario/
-    cd /home/bigdata/ejercicios/EjercicioDiccionario/
+# Crea la carpeta del proyecto en local y se posiciona en ella:
+mkdir /home/bigdata/ejercicios/EjercicioDiccionario/
+cd /home/bigdata/ejercicios/EjercicioDiccionario/
 
-    # Descarga los diccionarios
-    wget http://www.ilovelanguages.com/IDP/files/Spanish.txt
-    wget http://www.ilovelanguages.com/IDP/files/Italian.txt
-    wget http://www.ilovelanguages.com/IDP/files/French.txt
-    wget http://www.ilovelanguages.com/IDP/files/German.txt
-    ll
+# Descarga los diccionarios
+wget http://www.ilovelanguages.com/IDP/files/Spanish.txt
+wget http://www.ilovelanguages.com/IDP/files/Italian.txt
+wget http://www.ilovelanguages.com/IDP/files/French.txt
+wget http://www.ilovelanguages.com/IDP/files/German.txt
+ll
 
-    # Copia los diccionarios en un único fichero 'dictionary.txt'
-    cat French.txt > dictionary.txt
-    cat Spanish.txt >> dictionary.txt
-    cat Italian.txt >> dictionary.txt
-    cat German.txt >> dictionary.txt
-    ll
+# Copia los diccionarios en un único fichero 'dictionary.txt'
+cat French.txt > dictionary.txt
+cat Spanish.txt >> dictionary.txt
+cat Italian.txt >> dictionary.txt
+cat German.txt >> dictionary.txt
+ll
 ```
 
 ### 3. Creamos en HDFS una carpeta para el proyecto y subimos el fichero de diccionario combinado:
 
 ```bash
-    # Crea la carpeta en HDFS
-    hdfs dfs -mkdir /user/bigdata/mapreduce
+# Crea la carpeta en HDFS
+hdfs dfs -mkdir /user/bigdata/mapreduce
 
-    # Copia el fichero de local a HDFS, renombrándolo
-    hdfs dfs -appendToFile dictionary.txt /user/bigdata/mapreduce/diccionario.txt
-    hdfs dfs -ls /user/bigdata/mapreduce
+# Copia el fichero de local a HDFS, renombrándolo
+hdfs dfs -appendToFile dictionary.txt /user/bigdata/mapreduce/diccionario.txt
+hdfs dfs -ls /user/bigdata/mapreduce
 ```
 
 ![LsDiccionario](images/LsDiccionario.png)
@@ -122,20 +119,20 @@ jps
 >
 
 ```bash
-    gedit Dictionary.java # ... se añade el código fuente Java ...
+gedit Dictionary.java # ... se añade el código fuente Java ...
 ```
 - [Dictionary.java](src/Dictionary.java)
 
 ### 5. Compilamos el código fuente Java y creamos el fichero jar:
 
 ```bash
-    # Compila el código fuente Java
-    javac -classpath $HADOOP_HOME/share/hadoop/common/hadoop-common-2.7.2.jar:$HADOOP_HOME/share/hadoop/common/lib/hadoop-annotations-2.7.2.jar:$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.2.jar Dictionary.java
-    ls -lrt *.class
+# Compila el código fuente Java
+javac -classpath $HADOOP_HOME/share/hadoop/common/hadoop-common-2.7.2.jar:$HADOOP_HOME/share/hadoop/common/lib/hadoop-annotations-2.7.2.jar:$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.2.jar Dictionary.java
+ls -lrt *.class
 
-    # Empaqueta en un ficheo jar las clases java compiladas
-    jar cf dictionary.jar Dictionary*.class
-    ls -lrt dictionary.jar
+# Empaqueta en un ficheo jar las clases java compiladas
+jar cf dictionary.jar Dictionary*.class
+ls -lrt dictionary.jar
 ```
 
 ![LsJar](images/LsJar.png)
@@ -145,7 +142,7 @@ jps
 > NOTA: Como he dejado el fichero Dictionary.java original, sí tengo que indicar los parámetros.
 
 ```bash
-    hadoop jar dictionary.jar Dictionary /user/bigdata/mapreduce/diccionario.txt output
+hadoop jar dictionary.jar Dictionary /user/bigdata/mapreduce/diccionario.txt output
 ```
 
 ![Output_1](images/Output_1.png)
@@ -154,14 +151,14 @@ jps
 ### 7. Obtenemos la traducción de pig:
 
 ```bash
-    # Comprueba el directorio y ficheros de resultados
-    hdfs dfs -ls -R /user/bigdata/output
+# Comprueba el directorio y ficheros de resultados
+hdfs dfs -ls -R /user/bigdata/output
 
-    # Copia los resultados en un fichero de texto en local
-    hdfs dfs -cat /user/bigdata/output/* > out.txt
+# Copia los resultados en un fichero de texto en local
+hdfs dfs -cat /user/bigdata/output/* > out.txt
 
-    # Localiza las traducciones de 'pig' en el fichero de texto
-    grep 'pig\s' out.txt
+# Localiza las traducciones de 'pig' en el fichero de texto
+grep 'pig\s' out.txt
 ```
 
 - Resultado:
@@ -169,7 +166,6 @@ jps
     pig	|cochon[Noun]|Schwein (n)|el chancho[Noun]|el puerco
 
 ![Traduccion](images/Traduccion.png)
-
 
 
 ***

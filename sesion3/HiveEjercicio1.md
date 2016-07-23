@@ -120,8 +120,6 @@ SELECT * FROM PinkFloid WHERE Ranking_eeuu <= 5 AND Ranking_uk <= 5;
 ```hive
 
 
-
-
 ### 9. (OPCIONAL) Repetir todos los ejercicios empleando una tabla con estructuras de datos complejas
 
 ```hive

@@ -8,33 +8,19 @@
 
 Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ranking UK):
 
->    1967, The Piper at the Gates of Dawn,131,6
-
->    1968, A Saucerful of Secrets,999,9
-
->    1969, Music from the Film More,153,9
-
->    1969, Ummagumma,74,5
-
->    1970, Atom Heart Mother,55,1
-
->    1972, Obscured by Clouds, 46,6
-
->    1973, The Dark Side of the Moon, 1,1
-
->    1975, Wish you Were Here, 1,1
-
->    1977, Animals, 3,2
-
->    1979, The Wall, 1,3
-
->    1983, The Final Cut, 6,1
-
->    1987, A Momentary Lapse of Reason,3,3
-
->    1994, The Division Bell, 1,1
-
->    2014, The Endless River, 3, 1
+1967, The Piper at the Gates of Dawn,131,6
+1968, A Saucerful of Secrets,999,9
+1969, Music from the Film More,153,9
+1969, Ummagumma,74,5
+1970, Atom Heart Mother,55,1
+1972, Obscured by Clouds, 46,6
+1973, The Dark Side of the Moon, 1,1
+1975, Wish you Were Here, 1,1
+1977, Animals, 3,21979, The Wall, 1,3
+1983, The Final Cut, 6,1
+1987, A Momentary Lapse of Reason,3,3
+1994, The Division Bell, 1,1
+2014, The Endless River, 3, 1
 
 ### 1. Crear un fichero llamado discos.txt
 
@@ -54,23 +40,23 @@ head discos.txt
 
 ### 2. Arrancar HDFS, Yarn y el job history
 
-> NOTA: deben existir las variables de entorno:
 >
->       $HADOOP_HOME=/home/bigdata/hadoop
+>NOTA: deben existir las variables de entorno:
 >
->       $PIG_HOME=/home/bigdata/pig
+>- $HADOOP_HOME=/home/bigdata/hadoop
+>
+>- $HIVE_HOME=/home/bigdata/hive
+>
 
 ```bash
-    # Accede al directorio de hadoop
-    cd $HADOOP_HOME
+# Accedemos al directorio de hadoop y arrancamos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/start-dfs.sh
+./sbin/start-yarn.sh
+./sbin/mr-jobhistory-daemon.sh start historyserver
 
-    # Arranca los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
-    ./sbin/start-dfs.sh
-    ./sbin/start-yarn.sh
-    ./sbin/mr-jobhistory-daemon.sh start historyserver
-
-    # Comprueba que los demonios estén arrancados
-    jps
+# Comprobamos que los demonios estén arrancados
+jps
 ```
 
 ![Demonios Hadoop](images/DemoniosHadoop.png)
@@ -78,11 +64,11 @@ head discos.txt
 ### 3. Subir el fichero a HDFS dentro de la carpeta /ejerciciosPig/discografia.txt
 
 ```bash
-    # Copia el fichero de texto al HDFS
-    hdfs dfs -put discos.txt /ejerciciosPig/discografia.txt
+# Copia el fichero de texto al HDFS
+hdfs dfs -put discos.txt /ejerciciosPig/discografia.txt
 
-    # Comprueba el fichero subido
-    hdfs dfs -cat /ejerciciosPig/discografia.txt
+# Comprueba el fichero subido
+hdfs dfs -cat /ejerciciosPig/discografia.txt
 ```
 
 ![cat discografia.txt](images/CatDiscografia.png)
@@ -90,7 +76,7 @@ head discos.txt
 ### 4. Ejecutar la instrucción ls sobre Hadoop para indicar el tamaño del fichero
 
 ```bash
-    hdfs dfs -ls /ejerciciosPig/discografia.txt
+hdfs dfs -ls /ejerciciosPig/discografia.txt
 ```
 
 ![ls discografia.txt](images/LsDiscografia.png)
@@ -106,8 +92,8 @@ head discos.txt
 >       log4j.rootLogger=fatal
 
 ```bash
-    pig -4 $PIG_HOME/conf/nolog.conf -x mapreduce
-    cat hdfs://localhost:9000/ejerciciosPig/discografia.txt
+pig -4 $PIG_HOME/conf/nolog.conf -x mapreduce
+cat hdfs://localhost:9000/ejerciciosPig/discografia.txt
 ```
 
 ![Pig Mapreduce](images/PigMapreduce.png)
@@ -115,8 +101,8 @@ head discos.txt
 ### 6. Cargar el fichero de hdfs en una variable llamada discos
 
 ```bash
-    discos = LOAD 'hdfs://localhost:9000/ejerciciosPig/discografia.txt' using PigStorage (',') AS (annio: int, nombredisco: chararray, rankingEEUU: int, rankingUK: int);
-    dump discos;
+discos = LOAD 'hdfs://localhost:9000/ejerciciosPig/discografia.txt' using PigStorage (',') AS (annio: int, nombredisco: chararray, rankingEEUU: int, rankingUK: int);
+dump discos;
 ```
 
 ![Var discos](images/VarDiscos.png)
@@ -124,8 +110,8 @@ head discos.txt
 ### 7. Calcular los discos que estuvieron a la vez en el top 5 de EEUU y de UK (indicar también el resultado)
 
 ```bash
-    top5 = filter discos by rankingEEUU <= 5 and rankingUK <= 5;
-    dump top5;
+top5 = filter discos by rankingEEUU <= 5 and rankingUK <= 5;
+dump top5;
 ```
 
 ![Top 5](images/Top5.png)
@@ -133,19 +119,19 @@ head discos.txt
 ### 8. Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (indicar también el resultado)  empleando los comandos de LATIN PIG
 
 ```bash
-    # Forma 1
-    eu = foreach (group discos all) generate MAX(discos.rankingEEUU) as maxEEUU, MIN(discos.rankingEEUU) as minEEUU;
-    uk = foreach (group discos all) generate MAX(discos.rankingUK) as maxUK, MIN(discos.rankingUK) as minUK;
-    dump eu;
-    dump uk;
+# Forma 1
+eu = foreach (group discos all) generate MAX(discos.rankingEEUU) as maxEEUU, MIN(discos.rankingEEUU) as minEEUU;
+uk = foreach (group discos all) generate MAX(discos.rankingUK) as maxUK, MIN(discos.rankingUK) as minUK;
+dump eu;
+dump uk;
 ```
 
 ![Rankings1](images/Rankings1.png)
 
 ```bash
-    # Otra forma...
-    minmax = foreach (group discos all) generate MAX(discos.rankingEEUU) as maxEEUU, MIN(discos.rankingEEUU) as minEEUU, MAX(discos.rankingUK) as maxUK, MIN(discos.rankingUK) as minUK;
-    dump minmax;
+# Otra forma...
+minmax = foreach (group discos all) generate MAX(discos.rankingEEUU) as maxEEUU, MIN(discos.rankingEEUU) as minEEUU, MAX(discos.rankingUK) as maxUK, MIN(discos.rankingUK) as minUK;
+dump minmax;
 
 ```
 
