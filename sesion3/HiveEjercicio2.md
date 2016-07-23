@@ -150,6 +150,8 @@ SELECT * FROM Deuda2015 WHERE Deuda > 500 AND Comunidad = "CATALUÑA";
 
 ![Load data](images/hive1-07.png)
 
+El resultado se encuentra en el fichero [RESULTADO/deudas_cataluña/000000_0](RESULTADO/deudas_cataluña/000000_0)
+
 ***
 
 ### 99. Detenemos los demonios
