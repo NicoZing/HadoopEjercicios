@@ -28,11 +28,9 @@ Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el
 ### 0. Iniciamos el sistema (si no lo está ya)
 
 >
->NOTA: deben existir las variables de entorno:
+>NOTA: debe existir la variable de entorno:
 >
 >- $HADOOP_HOME=/home/bigdata/hadoop
->
->- $PIG_HOME=/home/bigdata/pig
 >
 
 ```bash

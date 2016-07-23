@@ -52,11 +52,9 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 ### 1. Iniciamos el sistema (si no lo está ya)
 
 >
->NOTA: deben existir las variables de entorno:
+>NOTA: debe existir la variable de entorno:
 >
 >- $HADOOP_HOME=/home/bigdata/hadoop
->
->- $PIG_HOME=/home/bigdata/pig
 >
 
 ```bash
