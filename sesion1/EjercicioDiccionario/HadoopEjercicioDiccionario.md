@@ -185,5 +185,6 @@ cd $HADOOP_HOME
 
 # Comprobamos que los demonios no estén arrancados
 jps
+```
 
 ***

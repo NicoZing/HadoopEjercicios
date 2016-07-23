@@ -118,16 +118,8 @@ SELECT * FROM PinkFloid WHERE Ranking_eeuu <= 5 AND Ranking_uk <= 5;
 ### 8. (OPCIONAL) Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (por ejemplo empleando el comando order y limit en dos sentencias)
 
 ```hive
-SELECT Titulo, MIN(Ranking_eeuu) AS MenorRankingEEUU FROM PinkFloid GROUP BY Titulo;
-SELECT Titulo, MAX(Ranking_eeuu) AS MayorRankingEEUU FROM PinkFloid GROUP BY Titulo;
-SELECT Titulo, MIN(Ranking_uk) AS MenorRankingUK FROM PinkFloid GROUP BY Titulo;
-SELECT Titulo, MAX(Ranking_uk) AS MayorRankingUK FROM PinkFloid GROUP BY Titulo;
-```
 
-![Select data](images/hive2-08a.png)
-![Select data](images/hive2-08b.png)
-![Select data](images/hive2-08c.png)
-![Select data](images/hive2-08d.png)
+
 
 
 ### 9. (OPCIONAL) Repetir todos los ejercicios empleando una tabla con estructuras de datos complejas
@@ -148,5 +140,6 @@ cd $HADOOP_HOME
 
 # Comprobamos que los demonios no estén arrancados
 jps
+```
 
 ***
