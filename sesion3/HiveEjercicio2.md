@@ -130,8 +130,7 @@ GROUP BY 1;
 
 ![Load data](images/hive1-06.png)
 
-### 7. Exportar las corporaciones cuya deuda sea mayor a 10.000 y pertenezcan a Cataluña a un fichero llamado deudas y adjuntarlo. Puedes
-emplear un comando similar al siguiente:
+### 7. Exportar las corporaciones cuya deuda sea mayor a 10.000 y pertenezcan a Cataluña a un fichero llamado deudas y adjuntarlo. Puedes emplear un comando similar al siguiente:
 
 _INSERT OVERWRITE LOCAL DIRECTORY '/home/bigdata/ejemplosHive/RESULTADO/' row format delimited fields terminated by ',' select *
 from ........._
