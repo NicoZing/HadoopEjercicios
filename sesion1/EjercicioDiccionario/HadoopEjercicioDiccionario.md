@@ -49,30 +49,33 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 
 ## SOLUCIÓN:
 
-### 1) Iniciamos el sistema si no está iniciado
+### 1. Iniciamos el sistema (si no lo está ya)
 
-> NOTA: deben existir las variables de entorno:
 >
->       $HADOOP_HOME=/home/bigdata/hadoop
+>NOTA: deben existir las variables de entorno:
 >
->       $PIG_HOME=/home/bigdata/pig
+>- $HADOOP_HOME=/home/bigdata/hadoop
+>
+>- $HIVE_HOME=/home/bigdata/hive
+>
 
 ```bash
-    # Accede al directorio de hadoop
-    cd $HADOOP_HOME
+# Accedemos al directorio de hadoop y arrancamos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/start-dfs.sh
+./sbin/start-yarn.sh
+./sbin/mr-jobhistory-daemon.sh start historyserver
 
-    # Arranca los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
-    ./sbin/start-dfs.sh
-    ./sbin/start-yarn.sh
-    ./sbin/mr-jobhistory-daemon.sh start historyserver
-
-    # Comprueba que los demonios estén arrancados
-    jps
+# Comprobamos que los demonios estén arrancados
+jps
 ```
 
 ![Demonios Hadoop](images/DemoniosHadoop.png)
 
-### 2) Creamos en local una carpeta para el proyecto, descargamos los ficheros de diccionarios y los combinamos en un único fichero:
+
+![Demonios Hadoop](images/DemoniosHadoop.png)
+
+### 2. Creamos en local una carpeta para el proyecto, descargamos los ficheros de diccionarios y los combinamos en un único fichero:
 
 ```bash
     # Crea la carpeta del proyecto en local y se posiciona en ella:
@@ -94,7 +97,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
     ll
 ```
 
-### 3) Creamos en HDFS una carpeta para el proyecto y subimos el fichero de diccionario combinado:
+### 3. Creamos en HDFS una carpeta para el proyecto y subimos el fichero de diccionario combinado:
 
 ```bash
     # Crea la carpeta en HDFS
@@ -108,7 +111,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 ![LsDiccionario](images/LsDiccionario.png)
 
 
-### 4) Creamos en local el fichero Java Dictionary.java:
+### 4. Creamos en local el fichero Java Dictionary.java:
 
 >
 > NOTA: No he modificado el fichero Dictionary.java, sino que lo he dejado tal y como venía en los materiales del class room:
@@ -123,7 +126,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 ```
 - [Dictionary.java](src/Dictionary.java)
 
-### 5) Compilamos el código fuente Java y creamos el fichero jar:
+### 5. Compilamos el código fuente Java y creamos el fichero jar:
 
 ```bash
     # Compila el código fuente Java
@@ -137,7 +140,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 
 ![LsJar](images/LsJar.png)
 
-### 6) Ejecutamos el programa:
+### 6. Ejecutamos el programa:
 
 > NOTA: Como he dejado el fichero Dictionary.java original, sí tengo que indicar los parámetros.
 
@@ -148,7 +151,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 ![Output_1](images/Output_1.png)
 ![Output_2](images/Output_2.png)
 
-### 7) Obtenemos la traducción de pig:
+### 7. Obtenemos la traducción de pig:
 
 ```bash
     # Comprueba el directorio y ficheros de resultados
@@ -171,21 +174,16 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 
 ***
 
-## 99. Detener los demonios
+### 99. Detenemos los demonios
+
 ```bash
-    # Accede al directorio de hadoop
-    cd $HADOOP_HOME
+# Accedemos al directorio de hadoop y paramos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/stop-dfs.sh
+./sbin/stop-yarn.sh
+./sbin/mr-jobhistory-daemon.sh stop historyserver
 
-    # Para los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
-    ./sbin/stop-dfs.sh
-    ./sbin/stop-yarn.sh
-    ./sbin/mr-jobhistory-daemon.sh stop historyserver
-
-    # Comprueba que los demonios no estén arrancados
-    jps
-```
-
-
+# Comprobamos que los demonios no estén arrancados
+jps
 
 ***
-

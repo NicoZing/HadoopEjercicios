@@ -36,23 +36,23 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 >    2014, The Endless River, 3, 1
 
-## 1. Crear un fichero llamado discos.txt
+### 1. Crear un fichero llamado discos.txt
 
 ```bash
-    # Crea en local la carpeta del proyecto y se posiciona en ella
-    mkdir /home/bigdata/ejerciciosPig
-    cd /home/bigdata/ejerciciosPig
+# Creamos en local la carpeta del proyecto y nos posicionamos en ella
+mkdir /home/bigdata/ejerciciosPig
+cd /home/bigdata/ejerciciosPig
 
-    # Crea el fichero de texto con la discografía de Pink Floyd
-    gedit discos.txt # ... copiar, pegar, grabar y salir del editor
+# Creamos el fichero de texto con la discografía de Pink Floyd
+gedit discos.txt # ... copiar, pegar, grabar y salir del editor
 
-    # Muestra el inicio del fichero de texto
-    head discos.txt
+# Mostramos el inicio del fichero de texto
+head discos.txt
 ```
 
 ![Discografía de Pink Floid](images/DiscografiaPinkFloid.png)
 
-## 2. Arrancar HDFS, Yarn y el job history
+### 2. Arrancar HDFS, Yarn y el job history
 
 > NOTA: deben existir las variables de entorno:
 >
@@ -75,7 +75,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![Demonios Hadoop](images/DemoniosHadoop.png)
 
-## 3. Subir el fichero a HDFS dentro de la carpeta /ejerciciosPig/discografia.txt
+### 3. Subir el fichero a HDFS dentro de la carpeta /ejerciciosPig/discografia.txt
 
 ```bash
     # Copia el fichero de texto al HDFS
@@ -87,7 +87,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![cat discografia.txt](images/CatDiscografia.png)
 
-## 4. Ejecutar la instrucción ls sobre Hadoop para indicar el tamaño del fichero
+### 4. Ejecutar la instrucción ls sobre Hadoop para indicar el tamaño del fichero
 
 ```bash
     hdfs dfs -ls /ejerciciosPig/discografia.txt
@@ -95,7 +95,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![ls discografia.txt](images/LsDiscografia.png)
 
-## 5. Arrancar pig en modo distribuido (si se desea eliminar trazas de log) y ejecutar el siguiente comando: cat hdfs://localhost:9000 ejerciciosPig/discografia.txt para confirmar que los primeros puntos han funcionado correctamente y el fichero está subido a HDFS
+### 5. Arrancar pig en modo distribuido (si se desea eliminar trazas de log) y ejecutar el siguiente comando: cat hdfs://localhost:9000 ejerciciosPig/discografia.txt para confirmar que los primeros puntos han funcionado correctamente y el fichero está subido a HDFS
 
 > Nota: La configuración del nivel de error del log debe estar configurada en el fichero:
 >
@@ -112,7 +112,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![Pig Mapreduce](images/PigMapreduce.png)
 
-## 6. Cargar el fichero de hdfs en una variable llamada discos
+### 6. Cargar el fichero de hdfs en una variable llamada discos
 
 ```bash
     discos = LOAD 'hdfs://localhost:9000/ejerciciosPig/discografia.txt' using PigStorage (',') AS (annio: int, nombredisco: chararray, rankingEEUU: int, rankingUK: int);
@@ -121,7 +121,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![Var discos](images/VarDiscos.png)
 
-## 7. Calcular los discos que estuvieron a la vez en el top 5 de EEUU y de UK (indicar también el resultado)
+### 7. Calcular los discos que estuvieron a la vez en el top 5 de EEUU y de UK (indicar también el resultado)
 
 ```bash
     top5 = filter discos by rankingEEUU <= 5 and rankingUK <= 5;
@@ -130,7 +130,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![Top 5](images/Top5.png)
 
-## 8. Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (indicar también el resultado)  empleando los comandos de LATIN PIG
+### 8. Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (indicar también el resultado)  empleando los comandos de LATIN PIG
 
 ```bash
     # Forma 1
@@ -157,7 +157,7 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
     - Min(rankingUK) = 1
 
 
-## 9. Explica con tus propias palabras lo que se desea obtener con los siguientes comandos e indica el resultado obtenido.
+### 9. Explica con tus propias palabras lo que se desea obtener con los siguientes comandos e indica el resultado obtenido.
 
 - a = foreach discos generate anio;
     - Obtener una variable 'a' con todos los años de las canciones de la variable 'discos'.
@@ -170,26 +170,21 @@ Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ra
 
 ![Foreach distinct](images/ForeachDistinct.png)
 
-## 10. (opcional) Empleando UDFs extrae información útil de la discografía.
+### 10. (opcional) Empleando UDFs extrae información útil de la discografía.
 
 
 ***
 
-## 99. Detener los demonios
+### 99. Detenemos los demonios
+
 ```bash
-    # Accede al directorio de hadoop
-    cd $HADOOP_HOME
+# Accedemos al directorio de hadoop y paramos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/stop-dfs.sh
+./sbin/stop-yarn.sh
+./sbin/mr-jobhistory-daemon.sh stop historyserver
 
-    # Para los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
-    ./sbin/stop-dfs.sh
-    ./sbin/stop-yarn.sh
-    ./sbin/mr-jobhistory-daemon.sh stop historyserver
-
-    # Comprueba que los demonios no estén arrancados
-    jps
-```
-
-
+# Comprobamos que los demonios no estén arrancados
+jps
 
 ***
-

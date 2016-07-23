@@ -32,30 +32,30 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
 
 ## SOLUCIÓN:
 
-### 1) Iniciamos el sistema si no está iniciado
+### 1. Iniciamos el sistema (si no lo está ya)
 
-> NOTA: deben existir las variables de entorno:
 >
->       $HADOOP_HOME=/home/bigdata/hadoop
+>NOTA: deben existir las variables de entorno:
 >
->       $PIG_HOME=/home/bigdata/pig
+>- $HADOOP_HOME=/home/bigdata/hadoop
+>
+>- $HIVE_HOME=/home/bigdata/hive
+>
 
 ```bash
-    # Accede al directorio de hadoop
-    cd $HADOOP_HOME
+# Accedemos al directorio de hadoop y arrancamos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/start-dfs.sh
+./sbin/start-yarn.sh
+./sbin/mr-jobhistory-daemon.sh start historyserver
 
-    # Arranca los demonios del sistema (no es necesario indicar './sbin/', pero se incluye por claridad)
-    
-    ./sbin/start-yarn.sh
-    ./sbin/mr-jobhistory-daemon.sh start historyserver
-
-    # Comprueba que los demonios estén arrancados
-    jps
+# Comprobamos que los demonios estén arrancados
+jps
 ```
 
 ![Demonios Hadoop](images/DemoniosHadoop.png)
 
-### 2) Creamos en local una carpeta para el proyecto y los ficheros de texto de las canciones:
+### 2. Creamos en local una carpeta para el proyecto y los ficheros de texto de las canciones:
 
 ```bash
     # Crea la carpeta del proyecto en local y se posiciona en ella
@@ -77,7 +77,7 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
 
 ![HadoopWordCount-ListaFicherosDatos](images/HadoopWordCount-ListaFicherosDatos.png)
 
-### 3) Creamos en HDFS una carpeta para el proyecto y subimos los ficheros de las canciones:
+### 3. Creamos en HDFS una carpeta para el proyecto y subimos los ficheros de las canciones:
 
 ```bash
     # Copia los ficheros de texto al HDFS
@@ -104,7 +104,7 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
     hdfs dfs -cat /ejercicioWordCount_out/* > out.txt
 ```
 
-#### 4.A) Acceder al jobhistory e indicar los valores de "Status" y "Map Total" del job con el nombre "word count"
+#### 4.A. Acceder al jobhistory e indicar los valores de "Status" y "Map Total" del job con el nombre "word count"
 
 - Abrimos un navegador web y accedemos a la interfaz web de Map Reduce JobHistory:
     - Url: http://localhost:19888/jobhistory
@@ -115,13 +115,13 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
 
 ![HadoopWordCount-JobHistory](images/HadoopWordCount-JobHistory.png)
 
-#### 4.B) Palabra que se repite más veces:
+#### 4.B. Palabra que se repite más veces:
 
 - Resultado:
 
         - the:      33
 
-#### 4.C) Palabra que se repite 6 veces:
+#### 4.C. Palabra que se repite 6 veces:
 
 ```bash
     grep 6 out.txt
@@ -136,7 +136,7 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
         - our:      6
         - we:       6
 
-#### 4.D) Cuántas veces aparece la palabra eyes:
+#### 4.D. Cuántas veces aparece la palabra eyes:
 
 ```bash
     grep eyes out.txt
@@ -147,6 +147,19 @@ Partiendo de las letras de algunas canciones, Crear ficheros de texto en la máq
         - eyes,:  1
 
 
+***
+
+### 99. Detenemos los demonios
+
+```bash
+# Accedemos al directorio de hadoop y paramos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/stop-dfs.sh
+./sbin/stop-yarn.sh
+./sbin/mr-jobhistory-daemon.sh stop historyserver
+
+# Comprobamos que los demonios no estén arrancados
+jps
 
 ***
 

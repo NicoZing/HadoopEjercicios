@@ -32,7 +32,30 @@ Indicar todos los resultados del sudoku de ejemplo
 
 ## SOLUCIÓN:
 
-### 1) Creamos en local una carpeta para el proyecto y el fichero de texto del sudoku:
+### 0. Iniciamos el sistema (si no lo está ya)
+
+>
+>NOTA: deben existir las variables de entorno:
+>
+>- $HADOOP_HOME=/home/bigdata/hadoop
+>
+>- $HIVE_HOME=/home/bigdata/hive
+>
+
+```bash
+# Accedemos al directorio de hadoop y arrancamos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/start-dfs.sh
+./sbin/start-yarn.sh
+./sbin/mr-jobhistory-daemon.sh start historyserver
+
+# Comprobamos que los demonios estén arrancados
+jps
+```
+
+![Demonios Hadoop](images/DemoniosHadoop.png)
+
+### 1. Creamos en local una carpeta para el proyecto y el fichero de texto del sudoku:
 
 ```bash
     # Crea la carpeta del proyecto en local y se posiciona en ella
@@ -59,7 +82,7 @@ Indicar todos los resultados del sudoku de ejemplo
 ![SudokuDatos](images/SudokuDatos.png)
 
 
-### 2) Ejecutamos el programa sudoku y mostramos los resultados.
+### 2. Ejecutamos el programa sudoku y mostramos los resultados.
 
 ```bash
     # Ejecutar el proceso sudoku
@@ -86,6 +109,20 @@ Indicar todos los resultados del sudoku de ejemplo
 ![SudokuResultado](images/SudokuResultado.png)
 
 
+
+***
+
+### 99. Detenemos los demonios
+
+```bash
+# Accedemos al directorio de hadoop y paramos los demonios del sistema
+cd $HADOOP_HOME
+./sbin/stop-dfs.sh
+./sbin/stop-yarn.sh
+./sbin/mr-jobhistory-daemon.sh stop historyserver
+
+# Comprobamos que los demonios no estén arrancados
+jps
 
 ***
 
