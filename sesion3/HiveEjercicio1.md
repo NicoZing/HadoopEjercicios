@@ -33,7 +33,7 @@ jps
 ```bash
 sudo nano /home/bigdata/ejemplosHive/discografia.csv
 ```
-Añadir el texto siguiente y guardar el archivo:
+Añadir la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ranking UK) y guardar el archivo
 
     1967, The Piper at the Gates of Dawn,131,6
     1968, A Saucerful of Secrets,999,9
@@ -116,8 +116,6 @@ SELECT * FROM PinkFloid WHERE Ranking_eeuu <= 5 AND Ranking_uk <= 5;
 ![Select data](images/hive2-07.png)
 
 ### 8. (OPCIONAL) Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (por ejemplo empleando el comando order y limit en dos sentencias)
-
-```hive
 
 
 ### 9. (OPCIONAL) Repetir todos los ejercicios empleando una tabla con estructuras de datos complejas

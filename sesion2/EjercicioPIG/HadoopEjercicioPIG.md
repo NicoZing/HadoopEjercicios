@@ -8,19 +8,19 @@
 
 Partiendo de la discografía de Pink Floyd (año, nombre disco, ranking EEUU, ranking UK):
 
-1967, The Piper at the Gates of Dawn,131,6
-1968, A Saucerful of Secrets,999,9
-1969, Music from the Film More,153,9
-1969, Ummagumma,74,5
-1970, Atom Heart Mother,55,1
-1972, Obscured by Clouds, 46,6
-1973, The Dark Side of the Moon, 1,1
-1975, Wish you Were Here, 1,1
-1977, Animals, 3,21979, The Wall, 1,3
-1983, The Final Cut, 6,1
-1987, A Momentary Lapse of Reason,3,3
-1994, The Division Bell, 1,1
-2014, The Endless River, 3, 1
+    1967, The Piper at the Gates of Dawn,131,6
+    1968, A Saucerful of Secrets,999,9
+    1969, Music from the Film More,153,9
+    1969, Ummagumma,74,5
+    1970, Atom Heart Mother,55,1
+    1972, Obscured by Clouds, 46,6
+    1973, The Dark Side of the Moon, 1,1
+    1975, Wish you Were Here, 1,1
+    1977, Animals, 3,21979, The Wall, 1,3
+    1983, The Final Cut, 6,1
+    1987, A Momentary Lapse of Reason,3,3
+    1994, The Division Bell, 1,1
+    2014, The Endless River, 3, 1
 
 ### 1. Crear un fichero llamado discos.txt
 
@@ -45,7 +45,7 @@ head discos.txt
 >
 >- $HADOOP_HOME=/home/bigdata/hadoop
 >
->- $HIVE_HOME=/home/bigdata/hive
+>- $PIG_HOME=/home/bigdata/pig
 >
 
 ```bash

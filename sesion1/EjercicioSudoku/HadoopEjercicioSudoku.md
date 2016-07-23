@@ -16,15 +16,15 @@ Ejecutar el programa sudoku con los siguientes parámetros:
 
 En la ruta del fichero habrá que indicar la ruta en la que se encuentre un fichero que tendrá la siguiente información:
 
-        ? 4 6 3 ? ? 8 2 5
-        ? ? ? ? ? 2 4 ? ?
-        8 2 ? ? 6 ? ? 7 ?
-        7 ? ? 4 ? ? ? ? 2
-        3 8 ? ? ? ? 6 ? 9
-        ? 6 ? 2 8 ? ? ? ?
-        ? 7 ? ? ? 5 ? 3 ?
-        5 3 8 ? ? 7 ? ? ?
-        ? 9 ? ? ? ? ? ? 6
+    ? 4 6 3 ? ? 8 2 5
+    ? ? ? ? ? 2 4 ? ?
+    8 2 ? ? 6 ? ? 7 ?
+    7 ? ? 4 ? ? ? ? 2
+    3 8 ? ? ? ? 6 ? 9
+    ? 6 ? 2 8 ? ? ? ?
+    ? 7 ? ? ? 5 ? 3 ?
+    5 3 8 ? ? 7 ? ? ?
+    ? 9 ? ? ? ? ? ? 6
 
 Indicar todos los resultados del sudoku de ejemplo
 
@@ -39,7 +39,7 @@ Indicar todos los resultados del sudoku de ejemplo
 >
 >- $HADOOP_HOME=/home/bigdata/hadoop
 >
->- $HIVE_HOME=/home/bigdata/hive
+>- $PIG_HOME=/home/bigdata/pig
 >
 
 ```bash
@@ -58,25 +58,25 @@ jps
 ### 1. Creamos en local una carpeta para el proyecto y el fichero de texto del sudoku:
 
 ```bash
-    # Crea la carpeta del proyecto en local y se posiciona en ella
-    mkdir /home/bigdata/ejercicios/EjercicioSudoku
-    cd /home/bigdata/ejercicios/EjercicioSudoku
+# Crea la carpeta del proyecto en local y se posiciona en ella
+mkdir /home/bigdata/ejercicios/EjercicioSudoku
+cd /home/bigdata/ejercicios/EjercicioSudoku
 
-    # Crea el fichero de texto
-    touch sudoku.txt
-    echo "? 4 6 3 ? ? 8 2 5" > sudoku.txt
-    echo "? ? ? ? ? 2 4 ? ?" >> sudoku.txt
-    echo "8 2 ? ? 6 ? ? 7 ?" >> sudoku.txt
-    echo "7 ? ? 4 ? ? ? ? 2" >> sudoku.txt
-    echo "3 8 ? ? ? ? 6 ? 9" >> sudoku.txt
-    echo "? 6 ? 2 8 ? ? ? ?" >> sudoku.txt
-    echo "? 7 ? ? ? 5 ? 3 ?" >> sudoku.txt
-    echo "5 3 8 ? ? 7 ? ? ?" >> sudoku.txt
-    echo "? 9 ? ? ? ? ? ? 6" >> sudoku.txt
+# Crea el fichero de texto. Como es pequeño, lo hacemos por consola con comandos echo
+touch sudoku.txt
+echo "? 4 6 3 ? ? 8 2 5" > sudoku.txt
+echo "? ? ? ? ? 2 4 ? ?" >> sudoku.txt
+echo "8 2 ? ? 6 ? ? 7 ?" >> sudoku.txt
+echo "7 ? ? 4 ? ? ? ? 2" >> sudoku.txt
+echo "3 8 ? ? ? ? 6 ? 9" >> sudoku.txt
+echo "? 6 ? 2 8 ? ? ? ?" >> sudoku.txt
+echo "? 7 ? ? ? 5 ? 3 ?" >> sudoku.txt
+echo "5 3 8 ? ? 7 ? ? ?" >> sudoku.txt
+echo "? 9 ? ? ? ? ? ? 6" >> sudoku.txt
 
-    # Comprueba el fichero creado
-    ll
-    cat sudoku.txt
+# Comprueba el fichero creado
+ll
+cat sudoku.txt
 ```
 
 ![SudokuDatos](images/SudokuDatos.png)
@@ -85,8 +85,8 @@ jps
 ### 2. Ejecutamos el programa sudoku y mostramos los resultados.
 
 ```bash
-    # Ejecutar el proceso sudoku
-    hadoop jar /home/bigdata/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar sudoku ./sudoku.txt
+# Ejecutar el proceso sudoku
+hadoop jar /home/bigdata/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar sudoku ./sudoku.txt
 ```
 
 * Resultado:

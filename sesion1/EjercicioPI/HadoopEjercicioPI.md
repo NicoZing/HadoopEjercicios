@@ -32,7 +32,7 @@ Ejecutar el programa "pi" con los siguientes parámetros de entrada e indicar el
 >
 >- $HADOOP_HOME=/home/bigdata/hadoop
 >
->- $HIVE_HOME=/home/bigdata/hive
+>- $PIG_HOME=/home/bigdata/pig
 >
 
 ```bash
@@ -56,7 +56,7 @@ jps
 
 - Ejecutar:
 ```bash
-    hadoop jar /home/bigdata/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar pi 2 4
+hadoop jar /home/bigdata/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar pi 2 4
 ```
 - Resultado:
 
@@ -75,7 +75,7 @@ jps
 
 - Ejecutar:
 ```bash
-    hadoop jar /home/bigdata/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar pi 5 10
+hadoop jar /home/bigdata/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar pi 5 10
 ```
 - Resultado:
 

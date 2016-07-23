@@ -56,7 +56,7 @@ En este ejemplo, como hemos visto no hay parámetros de entrada ya que vienen in
 >
 >- $HADOOP_HOME=/home/bigdata/hadoop
 >
->- $HIVE_HOME=/home/bigdata/hive
+>- $PIG_HOME=/home/bigdata/pig
 >
 
 ```bash
