@@ -64,7 +64,7 @@ hive
 ```
 
 ```hive
-CREATE DATABASE ejercicios COMMENT 'Almacena los datos del ejercicio 1 de HIVE' WITH DBPROPERTIES ('creator' = 'Juan García', 'date' = '2016-97-23');
+CREATE DATABASE ejercicios COMMENT 'Almacena los datos del ejercicio 1 de HIVE' WITH DBPROPERTIES ('creator' = 'Juan García', 'date' = '2016-07-23');
 ```
 
 ![Create database](images/hive2-02.png)
@@ -95,7 +95,7 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\,';
 ### 5. Cargar el fichero de texto
 
 ```hive
-LOAD DATA LOCAL INPATH '/home/bigdata/ejemplosHive/Discografia.csv' INTO TABLE PinkFloid;
+LOAD DATA LOCAL INPATH '/home/bigdata/ejemplosHive/discografia.csv' INTO TABLE PinkFloid;
 ```
 
 ![Load data](images/hive2-05.png)
