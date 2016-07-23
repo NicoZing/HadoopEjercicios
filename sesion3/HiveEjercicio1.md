@@ -3,6 +3,7 @@
 ***
 - Autor: Juan A. García Cuevas
 - Fecha: 23/07/2016
+
 ***
 
 ### 0 En primer lugar iniciamos el sistema (si no lo está ya).
