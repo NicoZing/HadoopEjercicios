@@ -87,7 +87,6 @@ Ranking_eeuu INT,
 Ranking_uk INT
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\,';
-
 ```
 
 ![Create table](images/hive2-04.png)
@@ -118,11 +117,35 @@ SELECT * FROM PinkFloid WHERE Ranking_eeuu <= 5 AND Ranking_uk <= 5;
 
 ### 8. (OPCIONAL) Obtener la máxima y mínima posición que ocuparon los discos de Pink Floyd en EEUU y en UK (por ejemplo empleando el comando order y limit en dos sentencias)
 
-
-### 9. (OPCIONAL) Repetir todos los ejercicios empleando una tabla con estructuras de datos complejas
+#### 8.A Top más alto en EEUU: 1
 
 ```hive
+SELECT 'Top más alto en EEUU: ', * FROM PinkFloid ORDER BY Ranking_eeuu ASC LIMIT 1;
 ```
+![Select data](images/hive2-08a.png)
+
+#### 8.B Top más bajo en EEUU: 999
+
+```hive
+SELECT 'Top más bajo en EEUU: ', * FROM PinkFloid ORDER BY Ranking_eeuu DESC LIMIT 1;
+```
+![Select data](images/hive2-08b.png)
+
+#### 8.C Top más alto en UK: 1
+
+```hive
+SELECT 'Top más alto en UK: ', * FROM PinkFloid ORDER BY Ranking_uk ASC LIMIT 1;
+```
+![Select data](images/hive2-08c.png)
+
+#### 8.D Top más bajo en UK: 9
+
+```hive
+SELECT 'Top más bajo en UK: ', * FROM PinkFloid ORDER BY Ranking_uk DESC LIMIT 1;
+```
+![Select data](images/hive2-08d.png)
+
+### 9. (OPCIONAL) Repetir todos los ejercicios empleando una tabla con estructuras de datos complejas
 
 ***
 
