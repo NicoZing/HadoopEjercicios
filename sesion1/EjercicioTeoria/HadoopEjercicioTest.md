@@ -57,7 +57,8 @@ $HADOOP_HOME/bin/hdfs dfs ‐cat /outHDFS/*
 
 #### Respuesta: A
 
-- NOTAS: _Yarn  combina  un  gestor  de  recursos  central  que  gestiona  la  forma  en  que  las 
+- NOTAS: 
+    - _Yarn  combina  un  gestor  de  recursos  central  que  gestiona  la  forma  en  que  las 
 aplicaciones  utilizan  los  recursos  del  sistema...([nstalación y configuración de herramientas 
 software para Big Data](https://riunet.upv.es/bitstream/handle/10251/64098/-DAV%C3%93%20-%20Instalaci%C3%B3n%20y%20configuraci%C3%B3n%20de%20herramientas%20software%20para%20Big%20Data.pdf?sequence=2))._
 
