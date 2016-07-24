@@ -84,7 +84,8 @@ software para Big Data](https://riunet.upv.es/bitstream/handle/10251/64098/-DAV%
 
 #### Respuesta: B
 
-- NOTAS: _([Hive, Sqoop y Pig](http://blogs.solidq.com/es/big-data/hive-sqoop-y-pig/))._
+- NOTAS: 
+    - _([Hive, Sqoop y Pig](http://blogs.solidq.com/es/big-data/hive-sqoop-y-pig/))._
 
 ## 7. ¿Qué es Flume?
 - a. Un sistema de archivos distribuido.
@@ -95,7 +96,8 @@ software para Big Data](https://riunet.upv.es/bitstream/handle/10251/64098/-DAV%
 
 #### Respuesta: D
 
-- NOTAS: _Apache Flume es un producto que forma parte del ecosistema Hadoop, y conforma una solución Java distribuida y de alta disponibilidad para recolectar, agregar y mover grandes cantidades de datos desde diferentes fuentes a un data store centralizado. ([¿Qué es Apache Flume?](https://unpocodejava.wordpress.com/2012/10/25/que-es-apache-flume/))._
+- NOTAS: 
+    - _Apache Flume es un producto que forma parte del ecosistema Hadoop, y conforma una solución Java distribuida y de alta disponibilidad para recolectar, agregar y mover grandes cantidades de datos desde diferentes fuentes a un data store centralizado. ([¿Qué es Apache Flume?](https://unpocodejava.wordpress.com/2012/10/25/que-es-apache-flume/))._
 
 ## 8. ¿En cuál de los siguientes escenarios usarías Hadoop?
 - a. Analizar los signos vitales de un bebé en tiempo real.
@@ -108,8 +110,6 @@ software para Big Data](https://riunet.upv.es/bitstream/handle/10251/64098/-DAV%
 
 - NOTAS:
     - _Los sistemas Hadoop, diseñados para el procesamiento por lotes, no se prestan para la rápida actuación que requiere el análisis de datos en tiempo real ([¿Es Hadoop todavía muy lento para aplicaciones de análisis en tiempo real?](http://searchdatacenter.techtarget.com/es/cronica/Es-Hadoop-todavia-muy-lento-para-aplicaciones-de-analisis-en-tiempo-real))._
-
-
     - _Hadoop está pensado para consumir un alto volumen de datos. ... estamos hablando de un proceso batch y no de uno en tiempo real ([Introducción a HDFS](https://hop2croft.wordpress.com/2013/08/24/introduccion-a-hdfs/))._
 
 
