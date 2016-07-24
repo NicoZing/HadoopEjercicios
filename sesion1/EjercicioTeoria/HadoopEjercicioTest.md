@@ -127,15 +127,19 @@ software para Big Data](https://riunet.upv.es/bitstream/handle/10251/64098/-DAV%
 
 ***
 
+### Referencias:
+- [Big Data y Supercómputo](https://ccc.inaoep.mx/~jagonzalez/MLII/BigData.pdf)
+- [Hadoop](https://es.wikipedia.org/wiki/Hadoop)
+- [Un poco de Hadoop](https://unpocodejava.wordpress.com/2012/08/29/un-poco-de-hadoop/)
+- [¿Es Hadoop todavía muy lento para aplicaciones de análisis en tiempo real?](http://searchdatacenter.techtarget.com/es/cronica/Es-Hadoop-todavia-muy-lento-para-aplicaciones-de-analisis-en-tiempo-real)
+- [Introducción a HDFS](https://hop2croft.wordpress.com/2013/08/24/introduccion-a-hdfs/)
+- [instalación y configuración de herramientas software para Big Data](https://riunet.upv.es/bitstream/handle/10251/64098/-DAV%C3%93%20-%20Instalaci%C3%B3n%20y%20configuraci%C3%B3n%20de%20herramientas%20software%20para%20Big%20Data.pdf?sequence=2)
+- [Hive, Sqoop y Pig](http://blogs.solidq.com/es/big-data/hive-sqoop-y-pig/)
+- [¿Qué es Apache Flume?](https://unpocodejava.wordpress.com/2012/10/25/que-es-apache-flume/)
+
 ### Glosario:
 - DSS: Sistemas de soporte a decisiones
 - OLTP: Procesamiento de transacciones en linea
 
-### Referencias:
-- [Hadoop](https://es.wikipedia.org/wiki/Hadoop)
-- [Un poco de Hadoop](https://unpocodejava.wordpress.com/2012/08/29/un-poco-de-hadoop/)
-- [¿Es Hadoop todavía muy lento para aplicaciones de análisis en tiempo real?](http://searchdatacenter.techtarget.com/es/cronica/Es-Hadoop-todavia-muy-lento-para-aplicaciones-de-analisis-en-tiempo-real)
-
-- [Big Data y Supercómputo](https://ccc.inaoep.mx/~jagonzalez/MLII/BigData.pdf)
 
 ***
