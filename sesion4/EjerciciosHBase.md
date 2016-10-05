@@ -6,7 +6,7 @@
 - Fecha: 25/09/2016
 
 
-![En construcción](http://daupv.es/wp-content/uploads/2011/01/construccion.jpg?19f28c)
+![En construcción](images/construccion.jpg)
 
 
 ***
@@ -62,13 +62,13 @@ status
 ```
 ![InicioHBaseShell](images/InicioHBaseShell.png)
 
-## Creamos el namespace 'discografia'
+## 1. Creamos el namespace 'discografia'
 ```hbase
 create_namespace 'discografia'
 ```
 ![CrearNamespace](images/CrearNamespace.png)
 
-## Creamos la tabla 'discos'
+## 2. Creamos la tabla 'discos'
 ```
 create 'discografia:discos', 'info', 'ranking'
 scan 'discografia:discos'
