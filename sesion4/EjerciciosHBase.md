@@ -10,8 +10,7 @@
 
 
 ***
-
-## ENUNCIADO:
+# ENUNCIADO:
 
 Partiendo de los datos de la discografía de álbumes de estudio de Pink Floyd: [Discografía de Pink Floid](http://es.wikipedia.org/wiki/Anexo:Discograf%C3%ADa_de_Pink_Floyd):
 
@@ -48,7 +47,6 @@ https://en.wikipedia.org/wiki/Green_Day_discography
 6. Ejecuta varias instrucciones (describiéndolas) para analizar datos anteriores
 
 ***
-
 ## Arrancamos HBase, accedemos a la consola y comprobamos el estado
 Abrimos un terminal shell y ejecutamos:
 ```bash
@@ -62,13 +60,15 @@ status
 ```
 ![InicioHBaseShell](images/InicioHBaseShell.png)
 
-## 1. Creamos el namespace 'discografia'
+***
+# 1. Creamos el namespace 'discografia'
 ```hbase
 create_namespace 'discografia'
 ```
 ![CrearNamespace](images/CrearNamespace.png)
 
-## 2. Creamos la tabla 'discos'
+***
+# 2. Creamos la tabla 'discos'
 ```
 create 'discografia:discos', 'info', 'ranking'
 scan 'discografia:discos'
@@ -76,7 +76,8 @@ describe 'discografia:discos'
 ```
 ![CrearTabla](images/CrearTabla.png)
 
-## 3. Cargamos los datos en HBase mediante una importación desde PIG. La clave será el año y un secuencial.
+***
+# 3. Cargamos los datos en HBase mediante una importación desde PIG. La clave será el año y un secuencial.
 Podríamos hacerlo directamente dede la shell de HBase mediante comandos put de la siguiente manera:
 ```
 put 'discografia:discos', '1967#1', 'info:anio', 1967
@@ -98,7 +99,7 @@ scan 'discografia:discos'
 ```
 
 ### 3.1 Creamos un fichero CSV con los datos de la discografía de Pink Floid:
-[PinkFloid.csv](data/PinkFloid.csv)
+[PinkFloid.csv](data/PinkFloid.csv.txt)
 
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
@@ -122,7 +123,7 @@ sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
 ```
 
 ### 3.2 Creamos el fichero PIG para cargar el fichero CSV:
-[carga_PinkFloid.pig](bin/carga_PinkFloid.pig)
+[carga_PinkFloid.pig](bin/carga_PinkFloid.pig.txt)
 
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
@@ -163,35 +164,21 @@ describe 'discografia:discos'
 ![ScanPinkFloid](images/ScanPinkFloid.png)
 
 
-## 4. Escribir la instrucción y el resultado de consultar el álbum del año 1968
+***
+# 4. Escribir la instrucción y el resultado de consultar el álbum del año 1968
 ```
 get 'discografia:discos','1968#2'
-
-
-
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-    import org.apache.hadoop.hbase.util.Bytes
-    import org.apache.hadoop.hbase.filter.SingleColumnValueFilter
-    import org.apache.hadoop.hbase.filter.BinaryComparator
-    import org.apache.hadoop.hbase.filter.CompareFilter
-    scan 'discografia:discos', { FILTER => SingleColumnValueFilter.new(Bytes.toBytes('cf'), Bytes.toBytes('anio'), CompareFilter::CompareOp.valueOf('EQUAL'), BinaryComparator.new(Bytes.toBytes('1968')))}
-    scan 'discografia:discos', { COLUMNS => 'anio', FILTER => "ValueFilter(=, 'number:1968')" }
-    scan 'discografia:discos', { COLUMNS => 'nombre_disco', FILTER => "DependentColumnFilter('anio', =, 1968)" }
-    scan 'discografia:discos', { COLUMNS => 'temperatura:max', FILTER => "ValueFilter( >, 'binary:12' )" }
-
-
-
 ```
+![Discografia1968-2](images/Discografia19682.png)
 
-## 5. Añadir la información de los álbumes de estudio de GreenDay
+
+***
+# 5. Añadir la información de los álbumes de estudio de GreenDay
 
 [Discografía de Grren Day](https://en.wikipedia.org/wiki/Green_Day_discography)
 
 ### 5.1 Creamos un fichero CSV con los datos de la discografía de Green Day:
-[GreenDay.csv](data/GreenDay.csv)
+[GreenDay.csv](data/GreenDay.csv.txt)
 
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/GreenDay.csv
@@ -211,7 +198,7 @@ sudo nano /home/bigdata/ejemplosHBase/GreenDay.csv
 ```
 
 ### 5.2 Creamos el fichero PIG para cargar el fichero CSV:
-[carga_GreenDay.pig](bin/carga_GreenDay.pig)
+[carga_GreenDay.pig](bin/carga_GreenDay.pig.txt)
 
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_GreenDay.pig
@@ -250,82 +237,73 @@ describe 'discografia:discos'
 ```
 ![ScanGreenDay](images/ScanGreenDay.png)
 
-## 6. Ejecuta varias instrucciones (describiéndolas) para analizar datos anteriores
+***
+# 6. Ejecuta varias instrucciones (describiéndolas) para analizar datos anteriores
 
-### 6.1 Leer una fila
+### 6.1 Obtener la lista de tablas de la base de datos
+```
+list
+```
+![LeerListaTablas](images/LeerListaTablas.png)
+
+### 6.2 Obtener el número de filas de una tabla
+```
+count 'discografia:discos'
+```
+![LeerCountTabla](images/LeerCountTabla.png)
+
+### 6.3 Leer una fila de una tabla
 ```
 get 'discografia:discos', '2014#15'
 ```
 ![LeerFila](images/LeerFila.png)
 
-### 6.2 Leer una columna de una fila (celda)
+### 6.4 Leer una columna de una fila determinada (una celda)
 ```
 get 'discografia:discos', '2014#15', 'info:nombre_disco'
 ```
 ![LeerColumna](images/LeerColumna.png)
 
-### 6.3 Otra forma de leer una columna de una fila (celda)
+### 6.5 Otra forma de leer una columna de una fila determinada (una celda)
 ```
 get 'discografia:discos', '2014#15', {COLUMN=>'info:nombre_disco'}
 ```
 ![LeerColumna2](images/LeerColumna2.png)
 
-### 6.4 Leer una columna de la tabla
+### 6.6 Leer una columna de las filas de una tabla
 ```
 scan 'discografia:discos', { COLUMN => 'info:nombre_disco' }
 ```
 ![LeerColumnaFilas](images/LeerColumnaFilas.png)
 
-### 6.5 Leer una columna de 5 filas
+### 6.7 Leer una columna en las primeras 5 filas de una tabla
 ```
 scan 'discografia:discos', { COLUMN => 'info:nombre_disco', LIMIT => 5 }
 ```
 ![LeerColumnaFilas5](images/LeerColumnaFilas5.png)
 
-### 6.6 Leer varias columnas de 5 filas
+### 6.8 Leer varias columnas en las primeras 5 filas de una tabla
 ```
 scan 'discografia:discos', { COLUMN => ['info.anio', 'info:nombre_disco'], LIMIT => 5 }
 ```
 ![Leer2ColumnaFilas5](images/Leer2ColumnaFilas5.png)
 
-### 6.7 Leer varias columnas de 3 filas, empezando a partir de una fila determinada
+### 6.9 Leer varias columnas de 3 filas de una tabla, empezando a partir de una fila con clave determinada
 ```
 scan 'discografia:discos', { COLUMN => ['info.anio', 'info:nombre_disco'], LIMIT => 5, STARTROW => '1983#12' }
 ```
 ![Leer2ColumnaFilas3ini](images/Leer2ColumnaFilas3ini.png)
 
-### 6.8 Leer valores de ranking en EEUU mayor que 10
+### 6.10 Leer valores de ranking en EEUU mayor que 10
 ```
 scan 'discografia:discos', { COLUMN => 'ranking:eeuu', FILTER => "ValueFilter( >, 'binary:10' )" }
 ```
 ![LeerFiltro](images/LeerFiltro.png)
 
-### 6.8 Obtener la fecha de inserción de un dato
+### 6.11 Obtener la fecha de inserción de un dato
 ```
 Time.at(1475096306895/1000)
 ```
 ![ObtenerFechaInsercion](images/ObtenerFechaInsercion.png)
 
-
-
-
-============================================
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-disable 'discografia:discos'
-drop 'discografia:discos'
-create 'discografia:discos', 'info'
-scan 'discografia:discos'
-describe 'discografia:discos'
-
-scan 'discografia:discos'
-get 'discografia:discos','1968#2'
-
-pig -x local carga_PinkFloid.pig
-pig -x local carga_GreenDay.pig
-
-deleteall 'discografia:discos', '1967#1'
-
-
+***
