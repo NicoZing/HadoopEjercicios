@@ -119,6 +119,7 @@ scan 'discografia:discos'
 
 ### Creamos un fichero CSV con los datos de la discografía de Pink Floid:
 Los datos de la discografía de Pink Floid se encuentran en el enlace: [PinkFloid.csv](data/PinkFloid.csv.txt)
+
 Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
@@ -143,6 +144,7 @@ sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
 
 ### Creamos el fichero PIG para cargar el fichero CSV:
 El script de PIG para cargar los datos de la discografía de Pink Floid se encuentran en el enlace: [carga_PinkFloid.pig](bin/carga_PinkFloid.pig.txt)
+
 Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
@@ -199,6 +201,7 @@ get 'discografia:discos','1968#2'
 
 ### Creamos un fichero CSV con los datos de la discografía de Green Day:
 Los datos de la discografía de Green Day se encuentran en el enlace: [GreenDay.csv](data/GreenDay.csv.txt)
+
 Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/GreenDay.csv
@@ -219,6 +222,7 @@ sudo nano /home/bigdata/ejemplosHBase/GreenDay.csv
 
 ### Creamos el fichero PIG para cargar el fichero CSV:
 El script de PIG para cargar los datos de la discografía de Green Day se encuentran en el enlace: [carga_GreenDay.pig](bin/carga_GreenDay.pig.txt)
+
 Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_GreenDay.pig
