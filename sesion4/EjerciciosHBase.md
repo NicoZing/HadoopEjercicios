@@ -5,10 +5,6 @@
 - Autor: Juan A. García Cuevas
 - Fecha: 25/09/2016
 
-
-![En construcción](images/construccion.jpg)
-
-
 ***
 # ENUNCIADO:
 
