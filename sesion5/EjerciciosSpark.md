@@ -125,7 +125,7 @@ textFile.filter(lambda line: "Moby" in line).count()
         - **Map Reduce** utiliza procesamiento batch (por lotes). Fue creado originalmente para recoger información de sitios Web en forma continua, sin necesidad de tener acceso a esos datos en tiempo real o casi real, por lo que no fue creado para tener gran velocidad.
         - **Spark** utiliza procesamiento in-memory, por lo que es mucho más rápido que MapReuce, aunque también puede utilizar discos cuando los datos no caben en memoria.
 
-    - _Facilidad de Uso_
+    - _Facilidad de uso_
         - **Map Reduce** no dispone de modo interactivo, aunque se consigue que su uso sea un poco más sencillo con algunos add-ons como Pig o Hive.
         - **Spark** ha ganado reconocimiento por su facilidad de uso gracias a su API (Application Programming Interface) amigable para SCALA, su lenguaje nativo y también para Java, Python y Spark SQL. Spark tiene también un modo interactivo con el que desarrolladores y usuarios pueden obtener respuestas inmediatas en consultas y otras acciones.
 
@@ -143,7 +143,7 @@ textFile.filter(lambda line: "Moby" in line).count()
     - _Escalabilidad_
         - Tanto **Map Reduce** como **Spark** son escalables utilizando HDFS. Yahoo tiene un cluster de 42.000 nodos con Map Reduce y el cluster de Spark más grande conocido es de 8.000 nodos. A medida que crece el big data es de esperar que esos tamaños de cluster sigan creciendo.
 
-    - _Tolerancia a Fallos_
+    - _Tolerancia a fallos_
         - MapReduce y Spark resuelven la tolerancia ante fallos de dos formas diferentes.
         - **MapReduce** utiliza TaskTrackers que suministran “_latidos_” al módulo JobTracker, de modo que si un latido se pierde, el JobTracker reprograma todas las operaciones pendientes y en ejecución para otro TaskTracker. Este método es efectivo para lograr tolerancia ante fallos pero puede incrementar notablemente los tiempos de ejecución.
         - **Spark** utiliza RDDs (Resilient Distributed Datasets) que son colecciones de elementos con tolerancia a fallos y que pueden ser operados en paralelo. Los RDDs pueden referenciar a un conjunto de datos en un sistema externo de almacenamiento, tal como un file system compartido, HDFS, HBase o cualquier otra fuente de datos que tenga el InputFormat de Hadoop. Spark puede crear RDDs desde cualquier fuente de almacenamiento soportada por Hadoop, incluyendo file systems locales u otros de los antes mencionados.
@@ -161,21 +161,21 @@ textFile.filter(lambda line: "Moby" in line).count()
     - Hadoop ofrece elementos que Spark no tiene, como sistemas de archivos distribuidos, y Spark ofrece procesamiento in-memory en tiempo real para aquellos conjuntos de datos que así lo requieran. 
     - Por tanto, Hadoop y Spark trabajando juntos en un mismo equipo es una solución muy poderosa que puede aplicarse a una gran variedad de aplicaciones big data.
 
-- Glosario:
-    - **Map Reduce** es un framework de software creado por Google para dar soporte a la computación paralela sobre grandes colecciones de datos en grupos de computadoras y al commodity computing. MapReduce ha sido implementado en soluciones como Apache Hadoop, MongoDB, Riak, CouchBase, Couchdb, Infinispan...
-    - **Apache Hadoop** es un framework de software que soporta aplicaciones distribuidas, permitendo a las aplicaciones trabajar con miles de nodos y petabytes de datos. Hadoop se inspiró en los documentos Google para MapReduce y Google File System (GFS).
-    - **HDFS** (Hadoop's Distributed File System) es un sistema de ficheros distribuido.
-
 ***
+# ANEXO:
+
 ## Referencias
 - [Pyspark package](https://spark.apache.org/docs/1.2.0/api/python/pyspark.html#pyspark.RDD)
 - [Big Data: Hadoop y Spark ¿Competencia o complemento?](http://www.datamation.com.ar/big-data-hadoop-y-spark-competencia-o-complemento-7509)
 - [MapReduce](https://es.wikipedia.org/wiki/MapReduce)
 - [Hadoop](https://es.wikipedia.org/wiki/Hadoop)
 
+## Algunas descripciones (glosario)
+- **Map Reduce** es un framework de software creado por Google para dar soporte a la computación paralela sobre grandes colecciones de datos en grupos de computadoras y al commodity computing. MapReduce ha sido implementado en soluciones como Apache Hadoop, MongoDB, Riak, CouchBase, Couchdb, Infinispan...
+- **Apache Hadoop** es un framework de software que soporta aplicaciones distribuidas, permitendo a las aplicaciones trabajar con miles de nodos y petabytes de datos. Hadoop se inspiró en los documentos Google para MapReduce y Google File System (GFS).
+- **HDFS** (Hadoop's Distributed File System) es un sistema de ficheros distribuido.
 
-***
-## ANEXO: algunas consultas de ejemplo más sobre el objeto RDD wordCounts
+## Algunas consultas de ejemplo más sobre el objeto RDD wordCounts
 ```bash
 # Obtiene el número de elementos
 wordCounts.count()
