@@ -36,6 +36,7 @@ tail -10 pg2701.txt
 ```
 ![DescargarFichero](images/DescargarFichero.png)
 
+El fichero puede verse en esta url: [pg2701.txt](data/pg2701.txt)
 
 ***
 ## Accedemos al directorio de hadoop y arrancamos y comprobamos los demonios del sistema
