@@ -96,6 +96,7 @@ describe 'discografia:discos'
 ***
 # 3. Cargamos los datos en HBase mediante una importación desde PIG.
 Los datos pueden cargarse directamente dede la shell de HBase mediante comandos put de la siguiente manera:
+
 Desde la línea de comandos del cliente hbase:
 ```hbase
 put 'discografia:discos', '1967#1', 'info:anio', 1967
