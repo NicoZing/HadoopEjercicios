@@ -1,5 +1,5 @@
 ***
-# Ejercicios de SPARK:
+# Ejercicios de SPARK
 ***
 - Autor: Juan A. García Cuevas
 - Fecha: 09/10/2016
@@ -25,22 +25,10 @@ EJERCICIOS DE SPARK
 ***
 # RESULTADO:
 
-## Creamos el directorio ejemplosSpark en local y descargamos el libro de Moby Dick del proyecto Gutenberg
-- Abrimos un terminal.
-- Desde la línea de comandos del S.O.:
-```bash
-mkdir ejemplosSpark
-cd ejemplosSpark
-wget http://www.gutenberg.org/cache/epub/2701/pg2701.txt
-tail pg2701.txt
-```
-![DescargarFichero](images/DescargarFichero.png)
+# 0. Preparación del entorno
 
-El fichero puede verse en este enlace: [pg2701.txt](data/pg2701.txt)
-
-***
 ## Accedemos al directorio de hadoop y arrancamos y comprobamos los demonios del sistema
-- Desde la línea de comandos del S.O.:
+Desde la línea de comandos del S.O.:
 ```bash
 cd $HADOOP_HOME
 jps
@@ -53,8 +41,23 @@ jps
 
 
 ***
-## Creamos una carpeta ejercicioSpark en HDFS y subimos el fichero
-- Desde línea de comandos del S.O.
+# 1. Creamos el directorio ejemplosSpark en local y descargamos el libro de Moby Dick del proyecto Gutenberg
+- Abrimos un terminal.
+- Desde la línea de comandos del S.O.:
+```bash
+mkdir ejemplosSpark
+cd ejemplosSpark
+wget http://www.gutenberg.org/cache/epub/2701/pg2701.txt
+tail pg2701.txt
+```
+![DescargarFichero](images/DescargarFichero.png)
+
+El fichero puede verse en este enlace: [pg2701.txt](data/pg2701.txt)
+
+
+***
+# 2, 3 y 4. Creamos una carpeta ejercicioSpark en HDFS, subimos el fichero y lo comprobamos
+- Desde la línea de comandos del S.O.:
 ```bash
 hdfs dfs -mkdir /ejercicioSpark
 hdfs dfs -appendToFile ~/ejemplosSpark/pg2701.txt /ejercicioSpark/pg2701.txt
@@ -64,8 +67,8 @@ hdfs dfs -ls /ejercicioSpark
 
 
 ***
-## Accedemos a pyspark
-- Desde línea de comandos del S.O.
+# 5. Accedemos a pyspark
+- Desde la línea de comandos del S.O.:
 ```bash
 pyspark
 ```
@@ -73,8 +76,8 @@ pyspark
 
 
 ***
-## Cargamos el fichero y contamos el número de líneas
-- Desde línea de comandos del cliente pyspark
+# 6. Cargamos el fichero y contamos el número de líneas
+- Desde la línea de comandos del cliente pyspark:
 ```bash
 # Cargamos el fichero de texto en un objeto RDD
 textFile = sc.textFile("/ejercicioSpark/pg2701.txt")
@@ -85,8 +88,8 @@ textFile.count()
 
 
 ***
-## Ejecutamos word count y mostramos, ordenadas alfabéticamente, las dos últimas palabras que aparecen y el número de repeticiones
-- Desde línea de comandos del cliente pyspark
+# 7. Ejecutamos word count y mostramos, ordenadas alfabéticamente, las dos últimas palabras que aparecen y el número de repeticiones
+- Desde la línea de comandos del cliente pyspark:
 ```bash
 # Obtenemos un arraylist con las palabras y el número de apariciones
 wordCounts = textFile.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a+b)
@@ -96,8 +99,8 @@ wordCounts.sortBy(lambda x: x[0]).collect()[wordCounts.count()-2:wordCounts.coun
 ![WordCountPyspark](images/WordCountPyspark.png)
 
 ***
-## Obtenemos el número de líneas en las que aparece la palabra Moby en el libro
-- Desde línea de comandos del cliente pyspark
+# 8. Obtenemos el número de líneas en las que aparece la palabra Moby en el libro
+- Desde la línea de comandos del cliente pyspark:
 ```bash
 # Creamos un nuevo RDD como resultado de filtrar las líneas de texto que contienen la palabra Moby
 linesWithSpark = textFile.filter(lambda line: "Moby" in line) 
@@ -109,7 +112,7 @@ textFile.filter(lambda line: "Moby" in line).count()
 
 
 ***
-## Diferencias entre Map Reduce y Spark
+# 9. Diferencias entre Map Reduce y Spark
 
 - **Map Reduce** y **Spark** son motores de procesamiento de datos, dos productos tecnológicos diferentes que fueron diseñados para operar en un mismo contexto. Los dos hacen muchas cosas similares aunque con algunas diferencias.
 
@@ -159,7 +162,7 @@ textFile.filter(lambda line: "Moby" in line).count()
     - Hadoop ofrece elementos que Spark no tiene, como sistemas de archivos distribuidos, y Spark ofrece procesamiento in-memory en tiempo real para aquellos conjuntos de datos que así lo requieran. 
     - Por tanto, Hadoop y Spark trabajando juntos en un mismo equipo es una solución muy poderosa que puede aplicarse a una gran variedad de aplicaciones big data.
 
-- _Glosario_
+- Glosario:
     - **Map Reduce** es un framework de software creado por Google para dar soporte a la computación paralela sobre grandes colecciones de datos en grupos de computadoras y al commodity computing. MapReduce ha sido implementado en soluciones como Apache Hadoop, MongoDB, Riak, CouchBase, Couchdb, Infinispan...
     - **Apache Hadoop** es un framework de software que soporta aplicaciones distribuidas, permitendo a las aplicaciones trabajar con miles de nodos y petabytes de datos. Hadoop se inspiró en los documentos Google para MapReduce y Google File System (GFS).
     - **HDFS** (Hadoop's Distributed File System) es un sistema de ficheros distribuido.
