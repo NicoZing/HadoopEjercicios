@@ -1,6 +1,6 @@
 ***
-# Ejercicio con HBase:
-# Discografía de Pink Floid y Green Day.
+# Ejercicios de HBase:
+### Discografía de Pink Floid y Green Day.
 ***
 - Autor: Juan A. García Cuevas
 - Fecha: 25/09/2016
