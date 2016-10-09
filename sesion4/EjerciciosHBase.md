@@ -180,7 +180,6 @@ pig -x local /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
 En el primer terminal:
 ```
 scan 'discografia:discos'
-describe 'discografia:discos'
 ```
 ![ScanPinkFloid](images/ScanPinkFloid.png)
 
@@ -257,7 +256,6 @@ pig -x local /home/bigdata/ejemplosHBase/carga_GreenDay.pig
 ### Comprobamos el contenido de la tabla 'discografia:discos'
 ```
 scan 'discografia:discos'
-describe 'discografia:discos'
 ```
 ![ScanGreenDay](images/ScanGreenDay.png)
 
