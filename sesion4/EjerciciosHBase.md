@@ -1,5 +1,5 @@
 ***
-# Ejercicios de HBase:
+# Ejercicios de HBase
 ### Discografía de Pink Floid y Green Day.
 ***
 - Autor: Juan A. García Cuevas
@@ -43,28 +43,49 @@ https://en.wikipedia.org/wiki/Green_Day_discography
 6. Ejecuta varias instrucciones (describiéndolas) para analizar datos anteriores
 
 ***
-## Arrancamos HBase, accedemos a la consola y comprobamos el estado
-Abrimos un terminal shell y ejecutamos:
+# RESULTADO:
+
+
+## Accedemos al directorio de hadoop y arrancamos y comprobamos los demonios del sistema
+Desde la línea de comandos del S.O.:
+```bash
+cd $HADOOP_HOME
+jps
+./sbin/start-dfs.sh
+./sbin/start-yarn.sh
+./sbin/mr-jobhistory-daemon.sh start historyserver
+jps
+```
+![DemoniosHadoop](images/DemoniosHadoop.png)
+
+
+***
+## Accdemos al directorio de HBase, lo arrancamos, accedemos a la consola y comprobamos el estado
+Desde la línea de comandos del S.O.:
 ```bash
 cd /home/bigdata/hbase
 bin/start-hbase.sh
-jps
 bin/hbase shell
 ```
+- Desde la línea de comandos del cliente hbase:
 ```hbase
 status
 ```
 ![InicioHBaseShell](images/InicioHBaseShell.png)
 
+
 ***
-# 1. Creamos el namespace 'discografia'
+## Creamos el namespace 'discografia'
+- Desde la línea de comandos del cliente hbase:
 ```hbase
 create_namespace 'discografia'
 ```
 ![CrearNamespace](images/CrearNamespace.png)
 
+
 ***
-# 2. Creamos la tabla 'discos'
+## Creamos la tabla 'discos'
+- Desde la línea de comandos del cliente hbase:
 ```
 create 'discografia:discos', 'info', 'ranking'
 scan 'discografia:discos'
@@ -72,10 +93,12 @@ describe 'discografia:discos'
 ```
 ![CrearTabla](images/CrearTabla.png)
 
+
 ***
-# 3. Cargamos los datos en HBase mediante una importación desde PIG. La clave será el año y un secuencial.
-Podríamos hacerlo directamente dede la shell de HBase mediante comandos put de la siguiente manera:
-```
+## Cargamos los datos en HBase mediante una importación desde PIG.
+Los datos pueden cargarse directamente dede la shell de HBase mediante comandos put de la siguiente manera:
+- Desde la línea de comandos del cliente hbase:
+```hbase
 put 'discografia:discos', '1967#1', 'info:anio', 1967
 put 'discografia:discos', '1967#1', 'info:grupo', 'Pink Floyd'
 put 'discografia:discos', '1967#1', 'info:nombre_disco', 'The Piper at the Gates of Dawn'
@@ -86,7 +109,7 @@ scan 'discografia:discos'
 ```
 ![CrearTabla](images/PutTabla.png)
 
-Pero vamos a hacerlo usando PIG para leer un fichero de datos CSV y cargarlo en HBase.
+Pero vamos a hacerlo usando PIG para leer un fichero CSV y cargarlo en HBase.
 
 Antes de nada eliminaremos los datos insertados:
 ```
@@ -94,9 +117,9 @@ deleteall 'discografia:discos', '1967#1'
 scan 'discografia:discos'
 ```
 
-### 3.1 Creamos un fichero CSV con los datos de la discografía de Pink Floid:
-[PinkFloid.csv](data/PinkFloid.csv.txt)
-
+#### Creamos un fichero CSV con los datos de la discografía de Pink Floid:
+Los datos de la discografía de Pink Floid se encuentran en el enlace: [PinkFloid.csv](data/PinkFloid.csv.txt)
+- Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
 ```
@@ -118,9 +141,9 @@ sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
 2014#15, 2014, Pink Floid, The Endless River, 3, 1
 ```
 
-### 3.2 Creamos el fichero PIG para cargar el fichero CSV:
-[carga_PinkFloid.pig](bin/carga_PinkFloid.pig.txt)
-
+#### Creamos el fichero PIG para cargar el fichero CSV:
+El script fr PIG para cargar los datos de la discografía de Pink Floid se encuentran en el enlace: [carga_PinkFloid.pig](bin/carga_PinkFloid.pig.txt)
+- Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
 ```
@@ -144,14 +167,14 @@ STORE datos INTO 'hbase://discografia:discos'
 USING org.apache.pig.backend.hadoop.hbase.HBaseStorage ('info:anio info:grupo info:nombre_disco ranking:eeuu ranking:uk');
 ```
 
-### 3.3 Ejecutamos el comando de carga de datos de la discografía de Pink Floid
+#### Ejecutamos el comando de carga de datos de la discografía de Pink Floid
 Abrimos un segundo terminal y ejecutamos:
 ```
 pig -x local /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
 ```
 ![InsertPinkFloid](images/InsertPinkFloid.png)
 
-### 3.4 Comprobamos el contenido de la tabla 'discografia:discos'
+#### Comprobamos el contenido de la tabla 'discografia:discos'
 En el primer terminal:
 ```
 scan 'discografia:discos'
