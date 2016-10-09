@@ -45,6 +45,7 @@ https://en.wikipedia.org/wiki/Green_Day_discography
 ***
 # RESULTADO:
 
+# 0. Preparación del entorno
 
 ## Accedemos al directorio de hadoop y arrancamos y comprobamos los demonios del sistema
 Desde la línea de comandos del S.O.:
@@ -58,16 +59,14 @@ jps
 ```
 ![DemoniosHadoop](images/DemoniosHadoop.png)
 
-
-***
-## Accdemos al directorio de HBase, lo arrancamos, accedemos a la consola y comprobamos el estado
+## Accedemos al directorio de HBase, lo arrancamos, accedemos a la consola y comprobamos el estado
 Desde la línea de comandos del S.O.:
 ```bash
 cd /home/bigdata/hbase
 bin/start-hbase.sh
 bin/hbase shell
 ```
-- Desde la línea de comandos del cliente hbase:
+Desde la línea de comandos del cliente hbase:
 ```hbase
 status
 ```
@@ -75,8 +74,8 @@ status
 
 
 ***
-## Creamos el namespace 'discografia'
-- Desde la línea de comandos del cliente hbase:
+# 1. Creamos el namespace 'discografia'
+Desde la línea de comandos del cliente hbase:
 ```hbase
 create_namespace 'discografia'
 ```
@@ -84,8 +83,8 @@ create_namespace 'discografia'
 
 
 ***
-## Creamos la tabla 'discos'
-- Desde la línea de comandos del cliente hbase:
+# 2. Creamos la tabla 'discos'
+Desde la línea de comandos del cliente hbase:
 ```
 create 'discografia:discos', 'info', 'ranking'
 scan 'discografia:discos'
@@ -95,9 +94,9 @@ describe 'discografia:discos'
 
 
 ***
-## Cargamos los datos en HBase mediante una importación desde PIG.
+# 3. Cargamos los datos en HBase mediante una importación desde PIG.
 Los datos pueden cargarse directamente dede la shell de HBase mediante comandos put de la siguiente manera:
-- Desde la línea de comandos del cliente hbase:
+Desde la línea de comandos del cliente hbase:
 ```hbase
 put 'discografia:discos', '1967#1', 'info:anio', 1967
 put 'discografia:discos', '1967#1', 'info:grupo', 'Pink Floyd'
@@ -117,9 +116,9 @@ deleteall 'discografia:discos', '1967#1'
 scan 'discografia:discos'
 ```
 
-#### Creamos un fichero CSV con los datos de la discografía de Pink Floid:
+### Creamos un fichero CSV con los datos de la discografía de Pink Floid:
 Los datos de la discografía de Pink Floid se encuentran en el enlace: [PinkFloid.csv](data/PinkFloid.csv.txt)
-- Desde la línea de comandos del S.O.:
+Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
 ```
@@ -141,9 +140,9 @@ sudo nano /home/bigdata/ejemplosHBase/PinkFloid.csv
 2014#15, 2014, Pink Floid, The Endless River, 3, 1
 ```
 
-#### Creamos el fichero PIG para cargar el fichero CSV:
-El script fr PIG para cargar los datos de la discografía de Pink Floid se encuentran en el enlace: [carga_PinkFloid.pig](bin/carga_PinkFloid.pig.txt)
-- Desde la línea de comandos del S.O.:
+### Creamos el fichero PIG para cargar el fichero CSV:
+El script de PIG para cargar los datos de la discografía de Pink Floid se encuentran en el enlace: [carga_PinkFloid.pig](bin/carga_PinkFloid.pig.txt)
+Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
 ```
@@ -167,14 +166,14 @@ STORE datos INTO 'hbase://discografia:discos'
 USING org.apache.pig.backend.hadoop.hbase.HBaseStorage ('info:anio info:grupo info:nombre_disco ranking:eeuu ranking:uk');
 ```
 
-#### Ejecutamos el comando de carga de datos de la discografía de Pink Floid
+### Ejecutamos el comando de carga de datos de la discografía de Pink Floid
 Abrimos un segundo terminal y ejecutamos:
 ```
 pig -x local /home/bigdata/ejemplosHBase/carga_PinkFloid.pig
 ```
 ![InsertPinkFloid](images/InsertPinkFloid.png)
 
-#### Comprobamos el contenido de la tabla 'discografia:discos'
+### Comprobamos el contenido de la tabla 'discografia:discos'
 En el primer terminal:
 ```
 scan 'discografia:discos'
@@ -185,6 +184,7 @@ describe 'discografia:discos'
 
 ***
 # 4. Escribir la instrucción y el resultado de consultar el álbum del año 1968
+Desde la línea de comandos del cliente hbase:
 ```
 get 'discografia:discos','1968#2'
 ```
@@ -196,9 +196,9 @@ get 'discografia:discos','1968#2'
 
 [Discografía de Grren Day](https://en.wikipedia.org/wiki/Green_Day_discography)
 
-### 5.1 Creamos un fichero CSV con los datos de la discografía de Green Day:
-[GreenDay.csv](data/GreenDay.csv.txt)
-
+### Creamos un fichero CSV con los datos de la discografía de Green Day:
+Los datos de la discografía de Green Day se encuentran en el enlace: [GreenDay.csv](data/GreenDay.csv.txt)
+Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/GreenDay.csv
 ```
@@ -216,9 +216,9 @@ sudo nano /home/bigdata/ejemplosHBase/GreenDay.csv
 2012#30, 2012, Green Day, ¡Tré!, 13, 31
 ```
 
-### 5.2 Creamos el fichero PIG para cargar el fichero CSV:
-[carga_GreenDay.pig](bin/carga_GreenDay.pig.txt)
-
+### Creamos el fichero PIG para cargar el fichero CSV:
+El script de PIG para cargar los datos de la discografía de Green Day se encuentran en el enlace: [carga_GreenDay.pig](bin/carga_GreenDay.pig.txt)
+Desde la línea de comandos del S.O.:
 ```bash
 sudo nano /home/bigdata/ejemplosHBase/carga_GreenDay.pig
 ```
@@ -242,14 +242,14 @@ STORE datos INTO 'hbase://discografia:discos'
 USING org.apache.pig.backend.hadoop.hbase.HBaseStorage ('info:anio info:grupo info:nombre_disco ranking:eeuu ranking:uk');
 ```
 
-### 5.3 Ejecutamos el comando de carga de datos de la discografía de Green Day
+### Ejecutamos el comando de carga de datos de la discografía de Green Day
 Abrimos un segundo terminal y ejecutamos:
 ```
 pig -x local /home/bigdata/ejemplosHBase/carga_GreenDay.pig
 ```
 ![InsertGreenDay](images/InsertGreenDay.png)
 
-### 5.4 Comprobamos el contenido de la tabla 'discografia:discos'
+### Comprobamos el contenido de la tabla 'discografia:discos'
 ```
 scan 'discografia:discos'
 describe 'discografia:discos'
