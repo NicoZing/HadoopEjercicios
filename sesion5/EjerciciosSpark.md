@@ -32,7 +32,7 @@ EJERCICIOS DE SPARK
 mkdir ejemplosSpark
 cd ejemplosSpark
 wget http://www.gutenberg.org/cache/epub/2701/pg2701.txt
-tail -10 pg2701.txt
+tail pg2701.txt
 ```
 ![DescargarFichero](images/DescargarFichero.png)
 
@@ -90,7 +90,7 @@ textFile.count()
 ```bash
 # Obtenemos un arraylist con las palabras y el número de apariciones
 wordCounts = textFile.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a+b)
-## Ordenamos alfabéticamente y mostramos las dos últimas palabras y el número de repeticiones
+# Ordenamos alfabéticamente y mostramos las dos últimas palabras y el número de repeticiones
 wordCounts.sortBy(lambda x: x[0]).collect()[wordCounts.count()-2:wordCounts.count()]
 ```
 ![WordCountPyspark](images/WordCountPyspark.png)
@@ -99,7 +99,7 @@ wordCounts.sortBy(lambda x: x[0]).collect()[wordCounts.count()-2:wordCounts.coun
 ## Obtenemos el número de líneas en las que aparece la palabra Moby en el libro
 - Desde línea de comandos del cliente pyspark
 ```bash
-# Creamos un nuevo RDD como resultado de filtra las líneas de texto que contienen la palabra Moby
+# Creamos un nuevo RDD como resultado de filtrar las líneas de texto que contienen la palabra Moby
 linesWithSpark = textFile.filter(lambda line: "Moby" in line) 
 # Obtenemos el número de líneas de texto que contienen la palabra Moby
 textFile.filter(lambda line: "Moby" in line).count()
