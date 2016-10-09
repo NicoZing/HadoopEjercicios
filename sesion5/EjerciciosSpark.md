@@ -42,8 +42,7 @@ jps
 
 ***
 # 1. Creamos el directorio ejemplosSpark en local y descargamos el libro de Moby Dick del proyecto Gutenberg
-- Abrimos un terminal.
-- Desde la línea de comandos del S.O.:
+Desde la línea de comandos del S.O.:
 ```bash
 mkdir ejemplosSpark
 cd ejemplosSpark
@@ -57,7 +56,7 @@ El fichero puede verse en este enlace: [pg2701.txt](data/pg2701.txt)
 
 ***
 # 2, 3 y 4. Creamos una carpeta ejercicioSpark en HDFS, subimos el fichero y lo comprobamos
-- Desde la línea de comandos del S.O.:
+Desde la línea de comandos del S.O.:
 ```bash
 hdfs dfs -mkdir /ejercicioSpark
 hdfs dfs -appendToFile ~/ejemplosSpark/pg2701.txt /ejercicioSpark/pg2701.txt
@@ -68,7 +67,7 @@ hdfs dfs -ls /ejercicioSpark
 
 ***
 # 5. Accedemos a pyspark
-- Desde la línea de comandos del S.O.:
+Desde la línea de comandos del S.O.:
 ```bash
 pyspark
 ```
@@ -77,7 +76,7 @@ pyspark
 
 ***
 # 6. Cargamos el fichero y contamos el número de líneas
-- Desde la línea de comandos del cliente pyspark:
+Desde la línea de comandos del cliente pyspark:
 ```bash
 # Cargamos el fichero de texto en un objeto RDD
 textFile = sc.textFile("/ejercicioSpark/pg2701.txt")
@@ -89,7 +88,7 @@ textFile.count()
 
 ***
 # 7. Ejecutamos word count y mostramos, ordenadas alfabéticamente, las dos últimas palabras que aparecen y el número de repeticiones
-- Desde la línea de comandos del cliente pyspark:
+Desde la línea de comandos del cliente pyspark:
 ```bash
 # Obtenemos un arraylist con las palabras y el número de apariciones
 wordCounts = textFile.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a+b)
@@ -100,7 +99,7 @@ wordCounts.sortBy(lambda x: x[0]).collect()[wordCounts.count()-2:wordCounts.coun
 
 ***
 # 8. Obtenemos el número de líneas en las que aparece la palabra Moby en el libro
-- Desde la línea de comandos del cliente pyspark:
+Desde la línea de comandos del cliente pyspark:
 ```bash
 # Creamos un nuevo RDD como resultado de filtrar las líneas de texto que contienen la palabra Moby
 linesWithSpark = textFile.filter(lambda line: "Moby" in line) 
